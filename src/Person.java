@@ -3,12 +3,15 @@ import java.util.List;
 
 public class Person {
 	private String name;
-	private Wallet wallet;
-	private List<HandCard> handCard = new ArrayList<HandCard>();
+	protected Wallet wallet;
+	protected List<List<HandCard>> handCard;
 	
-	public Person(){};
+	public Person(){
+		handCard = new ArrayList<List<HandCard>>();
+	}
 	
 	public Person(String name) {
+		this();
 		this.name = name;
 	}
 	
@@ -24,8 +27,5 @@ public class Person {
 		return this.name;
 	}
 	
-	public List<HandCard> getHandCard() {
-		return this.handCard;
-	}
 	
 }
