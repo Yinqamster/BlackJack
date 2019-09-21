@@ -38,10 +38,9 @@ public class Player extends Person{
 				case Config.SPLITACTION:{
 					if(bet.size() != 1 || currentMoney < bet.get(0).getBet()
 							|| handCard.size() != 1
-							|| handCard.get(0).size() != 2
+							|| handCard.get(0).getCards().size() != 2
 							//TODO
-//							|| !getHandCard().get(0).get(0).numberEqual(getHandCard().get(0).get(1))
-							) {
+							|| !(handCard.get(0).getCards().get(0).getValue() == handCard.get(0).getCards().get(1).getValue())){
 						System.out.print("You cannot take this action, please choose again:");
 						break;
 					}
@@ -49,11 +48,11 @@ public class Player extends Person{
 						Bet bet1 = bet.get(0);
 						Bet bet2 = new Bet(bet1.getBet());
 						bet.add(bet2);
-						List<HandCard> handCardList1 = handCard.get(0);
-						HandCard handCard2 = handCardList1.get(1);
-						List<HandCard> handCardList2 = new ArrayList<HandCard>();
-						handCardList2.add(handCard2);
-						handCardList1.remove(1);
+						HandCard handCardList1 = handCard.get(0);
+						Card handCard2 = handCardList1.getCards().get(1);
+						HandCard handCardList2 = new HandCard();
+						handCardList2.getCards().add(handCard2);
+						handCardList1.getCards().remove(1);
 						handCard.add(handCardList2);
 						//TODO
 //						wallet.setWallet(currentMoney - bet2.getBet());
