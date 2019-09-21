@@ -12,6 +12,12 @@ public class Config {
 	public static final int PLAYERWIN = 1;
 	public static final int DEAL = 0;
 	public static final int DEALERWIN = -1;
+	public static final int BUST = 2;
+
+	public static final int CARDNUM = 52;
+	public static final int CARDRANGE = 13;
+	public static final String[] SUITS = {"Diamond", "Plum", "Heart", "Spade"};
+	public static final String[] NUMBERS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 	
 
 //	only for test

@@ -62,13 +62,11 @@ public class Player extends Person{
 				}
 				case Config.DOUBLEACTION: {
 					int size = bet.size();
-					/****************************************/
 					//this shouldn't happen!!!
 					if(!(index >= 0 && index < size)){
 						System.out.println("wrong index");
 						return -1;
 					}
-					/*****************************************/
 					
 					if(currentMoney < bet.get(index).getBet()) {
 						System.out.print("You cannot take this action, please choose again:");
@@ -145,13 +143,11 @@ public class Player extends Person{
 				System.out.println("You lose!");
 				break;
 			}
-			/*****************************************/
 			//this shouldn't happen!!!
 			default: {
 				System.out.println("wrong result!!");
 				break;
 			}
-			/****************************************/
 		}
 		
 	}
@@ -163,3 +159,4 @@ public class Player extends Person{
 	}
 
 }
+
