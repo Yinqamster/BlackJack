@@ -142,6 +142,10 @@ public class Player extends Person{
 				System.out.println("You lose!");
 				break;
 			}
+			case Config.BUST: {
+				System.out.println("BUST!!!!");
+				break;
+			}
 			//this shouldn't happen!!!
 			default: {
 				System.out.println("wrong result!!");
