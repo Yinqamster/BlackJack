@@ -4,6 +4,16 @@ import java.util.Scanner;
 public class Utils {
 	private static Scanner scanner = new Scanner(System.in);
 
+	public static int numOfPlayer() {
+		System.out.println("Please input the number of players: ");
+		int number = getNumberFromPlayer();
+		while(number != 1 && number != 2) {
+			System.out.println("Only one or two player(s) are allowed, please input again: ");
+			number = getNumberFromPlayer();
+		}
+		return number;
+	}
+	
 	public static String getName() {
 		System.out.print("What's your name: ");
 		return scanner.nextLine();
@@ -11,8 +21,8 @@ public class Utils {
 
 	public static boolean realMan() {
 		System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
-		char c = nextGame();
-		return (c == 'y' || c == 'Y');
+		String str = scanner.nextLine();
+		return (str.charAt(0) == 'y' || str.charAt(0) == 'Y');
 	}
 
 	public static int getMoney() {
