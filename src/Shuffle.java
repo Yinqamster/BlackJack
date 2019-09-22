@@ -43,15 +43,15 @@ public class Shuffle {
     }
 
     public void keepGive(Dealer dealer) {
-        int[] v = dealer.getHandCard().get(0).getValue();
-        int max = 0;
-        for (int n : v) {
-            if (n > max && n <= 21)
-                max = n;
-        }
-        if (max < 17) {
+        while (max(dealer.getHandCard().get(0).getValue()) < 17)
             giveOneCard(dealer, 0);
-            keepGive(dealer);
-        }
+    }
+
+    private int max(int[] a) {
+        int max = 0;
+        for (int v : a)
+            if (max < v)
+                max = v;
+        return max;
     }
 }

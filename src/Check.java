@@ -23,7 +23,7 @@ public class Check {
 			if (total > max && total <= 21)
 				max = total;
 		}
-		return max;
+		return max == 0 ? 22 : max;
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
@@ -34,11 +34,11 @@ public class Check {
 			if (checkTotal(P, which)==checkTotal(D, 0)) {
 				if (checkTotal(P, which) < 21)
 					return Config.DEAL;
-				if (P.getHandCard().get(which).isBlackJack() && D.getHandCard().get(which).isBlackJack())
+				if (P.getHandCard().get(which).isBlackJack() && D.getHandCard().get(0).isBlackJack())
 					return Config.DEAL;
 				if (P.getHandCard().get(which).isBlackJack())
 					return Config.PLAYERWIN;
-				if (D.getHandCard().get(which).isBlackJack())
+				if (D.getHandCard().get(0).isBlackJack())
 					return Config.DEALERWIN;
 				return Config.DEAL;
 			}

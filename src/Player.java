@@ -118,9 +118,9 @@ public class Player extends Person{
 		bet.add(new Bet(money));
 		wallet.setWallet(currentMoney - money);
 
-		System.out.print(super.getName() + " current bet: ");
+		System.out.print(super.getName() + "'s bet:\t");
 		Utils.printBet(this, 0);
-		System.out.print(super.getName() + " current wallet:");
+		System.out.print(super.getName() + "'s wallet:\t");
 		System.out.println(wallet.getMoney());
 		return true;
 		
