@@ -65,7 +65,7 @@ public class Utils {
 	
 	public static int getNumberFromPlayer(){
 		String str = scanner.nextLine();
-		while(!str.matches("^[0-9]*$")) {
+		while(!str.matches("^[0-9]*$") || str.isEmpty()) {
 			System.out.print("Please input a correct number: ");
 			str = scanner.nextLine();
 		}

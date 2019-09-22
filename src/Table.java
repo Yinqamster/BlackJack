@@ -48,7 +48,7 @@ public class Table {
                     System.out.print("Dealer's cards: \t");
                     Utils.printDealerHandCard(dealer);
                     System.out.print("Player's hand card:\t");
-                    Utils.printHandCard(player, 0);
+                    Utils.printHandCard(player, which);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
                         if (total > which + 1)
