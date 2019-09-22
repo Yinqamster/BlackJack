@@ -35,11 +35,11 @@ public class Table {
             shuffle.newShuffle();
             shuffle.giveNewCard(player);
             shuffle.giveNewCard(dealer);
+            System.out.print("Dealer's cards: \t");
+            Utils.printDealerHandCard(dealer);
+            System.out.print("Player's hand card:\t");
+            Utils.printHandCard(player, 0);
             while (true) {
-                System.out.print("Dealer's cards: \t");
-                Utils.printDealerHandCard(dealer);
-                System.out.print("Player's hand card:\t");
-                Utils.printHandCard(player, 0);
                 int action = player.takeAction(which);
                 if (action == Config.HITACTION || action == Config.SPLITACTION) {
                     if (action == Config.SPLITACTION)

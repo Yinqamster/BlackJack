@@ -33,7 +33,7 @@ public class Utils {
 	}
 
 	public static int getMoney() {
-		System.out.print("How many money do you have: (default 200) ");
+		System.out.print("How many money do you have: (default 200, please make sure you have more than 10) ");
 		boolean flag = true;
 		int m = 0;
 		while (flag) {
