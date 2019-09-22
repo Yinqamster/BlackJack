@@ -26,7 +26,13 @@ public class Player extends Person{
 	
 	public int takeAction(int index){
 		System.out.println("========================================");
-		System.out.println(super.getName() + ", please select your action: ");
+		if(handCard.size() == 2) {
+			System.out.println(super.getName() + ", please select action for your " + (index+1) + " hand cards: ");
+		}
+		else {
+			System.out.println(super.getName() + ", please select action for your hand cards: ");
+		}
+
 		System.out.println(Config.HITACTION + " Hit.");
 		System.out.println(Config.STANDACTION+ " Stand.");
 		System.out.println(Config.SPLITACTION + " Split.");
@@ -129,8 +135,12 @@ public class Player extends Person{
 	public void endGame(int result, int index) {
 		switch(result) {
 			case Config.PLAYERWIN: {
-				System.out.println(super.getName() + " win!");
-				//TODO
+				if(handCard.size() == 2) {
+					System.out.println(super.getName() + "'s " + (index+1) + " hand win!");
+				}
+				else {
+					System.out.println(super.getName() + " win!");
+				}
 				wallet.winMoney(2*bet.get(index).getBet());
 				break;
 			}
@@ -141,7 +151,12 @@ public class Player extends Person{
 				break;
 			}
 			case Config.DEALERWIN: {
-				System.out.println(super.getName() + " lose!");
+				if(handCard.size() == 2) {
+					System.out.println(super.getName() + "'s " + (index+1) + " hand lose!");
+				}
+				else {
+					System.out.println(super.getName() + " lose!");
+				}
 				break;
 			}
 			case Config.BUST: {
