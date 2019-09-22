@@ -23,7 +23,7 @@ public class Check {
 			if (total > max && total <= 21)
 				max = total;
 		}
-		return max;
+		return max == 0 ? 22 : max;
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
