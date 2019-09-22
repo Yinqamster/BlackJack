@@ -27,7 +27,7 @@ public class Check {
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
-		if (!checkBust(P, which) && !checkBust(D, which)) {
+		if (!checkBust(P, which) && !checkBust(D, 0)) {
 			if (checkTotal(P, which)>checkTotal(D, 0)) {
 				return Config.PLAYERWIN;
 			}
