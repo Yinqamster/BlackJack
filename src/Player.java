@@ -26,7 +26,7 @@ public class Player extends Person{
 	
 	public int takeAction(int index){
 		System.out.println("========================================");
-		System.out.println("Please select " + super.getName() + " action: ");
+		System.out.println(super.getName() + ", please select your action: ");
 		System.out.println(Config.HITACTION + " Hit.");
 		System.out.println(Config.STANDACTION+ " Stand.");
 		System.out.println(Config.SPLITACTION + " Split.");
@@ -100,7 +100,7 @@ public class Player extends Person{
 			System.out.println(super.getName() + " don't have enough money!!");
 			return false;
 		}
-		System.out.print("Please input the money" + super.getName() + " want to bet: ");
+		System.out.print(super.getName() + ", please input the money you want to bet: ");
 		
 		int money = Utils.getNumberFromPlayer();
 		while(money > currentMoney || money > Config.MAXBET || money < Config.MINBET) {

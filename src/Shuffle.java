@@ -22,8 +22,9 @@ public class Shuffle {
     }
 
     public void newShuffle() {
-        for (int i = 0; i < mask.length; i++)
+        for (int i = 0; i < mask.length; i++) {
             mask[i] = 0;
+        }
     }
 
     public void giveNewCard(Person p) {
