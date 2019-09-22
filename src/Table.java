@@ -44,15 +44,7 @@ public class Table {
                 if (action == Config.HITACTION || action == Config.SPLITACTION) {
                     if (action == Config.SPLITACTION)
                         total++;
-                    shuffle.giveOneCard(player, which);
-                    System.out.print(dealer.getName() + "'s handcards:\t");
-                    Utils.printDealerHandCard(dealer);
-                    System.out.print(player.getName() + "'s handcards:\t");
-                    Utils.printHandCard(player, 0);
-                    if (total == 2) {
-                        System.out.print(player.getName() + "'s second handcards:\t");
-                        Utils.printHandCard(player, 1);
-                    }
+                    giveAndPrint();
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
                         if (total > which + 1)
@@ -66,15 +58,7 @@ public class Table {
                         break;
                 }
                 else if (action == Config.DOUBLEACTION) {
-                    shuffle.giveOneCard(player, which);
-                    System.out.print(dealer.getName() + "'s handcards:\t");
-                    Utils.printDealerHandCard(dealer);
-                    System.out.print(player.getName() + "'s handcards:\t");
-                    Utils.printHandCard(player, 0);
-                    if (total == 2) {
-                        System.out.print(player.getName() + "'s second handcards:\t");
-                        Utils.printHandCard(player, 1);
-                    }
+                    giveAndPrint();
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
                         if (total > which + 1)
@@ -92,6 +76,18 @@ public class Table {
             char c = Utils.nextGame();
             if (c != 'y' && c != 'Y')
                 flag = false;
+        }
+    }
+
+    private void giveAndPrint() {
+        shuffle.giveOneCard(player, which);
+        System.out.print(dealer.getName() + "'s handcards:\t");
+        Utils.printDealerHandCard(dealer);
+        System.out.print(player.getName() + "'s handcards:\t");
+        Utils.printHandCard(player, 0);
+        if (total == 2) {
+            System.out.print(player.getName() + "'s second handcards:\t");
+            Utils.printHandCard(player, 1);
         }
     }
 
