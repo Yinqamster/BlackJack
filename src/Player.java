@@ -42,6 +42,7 @@ public class Player extends Person{
 							|| handCard.size() != 1
 							|| handCard.get(0).getCards().size() != 2
 							|| !(handCard.get(0).getCards().get(0).getValue() == handCard.get(0).getCards().get(1).getValue())){
+						System.out.println("bet size: " + bet.size());
 						System.out.print("You cannot take this action, please choose again:");
 						break;
 					}
@@ -84,8 +85,7 @@ public class Player extends Person{
 	}
 	
 	public void makeBet(){
-		
-		//TODO
+		bet.clear();
 		int currentMoney = wallet.getMoney();
 		System.out.print("Please input the money you want to bet: ");
 		
