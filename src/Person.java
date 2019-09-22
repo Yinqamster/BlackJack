@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Person {
 	private String name;
-//	protected Wallet wallet;
+	protected Wallet wallet;
 	protected List<HandCard> handCard;
 
 	public Person(){

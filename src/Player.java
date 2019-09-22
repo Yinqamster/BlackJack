@@ -19,8 +19,7 @@ public class Player extends Person{
 		System.out.println(Config.SPLITACTION + " Split.");
 		System.out.println(Config.DOUBLEACTION + " Double up.");
 		
-		//TODO
-		int currentMoney = Config.currentMoney;//wallet.getMoney();
+		int currentMoney = wallet.getMoney();
 		
 		while(true) {
 			int action = getNumberFromPlayer();
@@ -39,7 +38,6 @@ public class Player extends Person{
 					if(bet.size() != 1 || currentMoney < bet.get(0).getBet()
 							|| handCard.size() != 1
 							|| handCard.get(0).getCards().size() != 2
-							//TODO
 							|| !(handCard.get(0).getCards().get(0).getValue() == handCard.get(0).getCards().get(1).getValue())){
 						System.out.print("You cannot take this action, please choose again:");
 						break;
@@ -54,7 +52,6 @@ public class Player extends Person{
 						handCardList2.getCards().add(handCard2);
 						handCardList1.getCards().remove(1);
 						handCard.add(handCardList2);
-						//TODO
 						wallet.setWallet(currentMoney - bet2.getBet());
 						return Config.SPLITACTION;
 					}
@@ -74,7 +71,6 @@ public class Player extends Person{
 					else {
 						int betNum = bet.get(index).getBet();
 						bet.get(index).setBet(2 * betNum);
-						//TODO
 						wallet.setWallet(currentMoney - betNum);
 						System.out.println(bet.get(index).getBet());
 						return Config.DOUBLEACTION;
@@ -101,7 +97,7 @@ public class Player extends Person{
 	public void makeBet(){
 		
 		//TODO
-		int currentMoney = Config.currentMoney;//wallet.getMoney();
+		int currentMoney = wallet.getMoney();
 		System.out.print("Please input the money you want to bet: ");
 		
 		int money = getNumberFromPlayer();
@@ -118,7 +114,6 @@ public class Player extends Person{
 		}
 		
 		bet.add(new Bet(money));
-		//TODO
 		wallet.setWallet(currentMoney - money);
 		
 //		System.out.println(money);
@@ -129,13 +124,13 @@ public class Player extends Person{
 			case Config.PLAYERWIN: {
 				System.out.println("You win!");
 				//TODO
-				wallet.setWallet(wallet.getMoney() + 2*bet.get(index).getBet());
+				wallet.winMoney(2*bet.get(index).getBet());
 				break;
 			}
 			case Config.DEAL: {
 				System.out.println("Deal!");
 				//TODO
-				wallet.setWallet(wallet.getMoney() + bet.get(index).getBet());
+				wallet.winMoney(bet.get(index).getBet());
 				break;
 			}
 			case Config.DEALERWIN: {
@@ -153,12 +148,6 @@ public class Player extends Person{
 			}
 		}
 		
-	}
-	
-	public static void main(String args[]) {
-		Player player = new Player();
-		player.makeBet();
-		player.takeAction(0);
 	}
 
 }
