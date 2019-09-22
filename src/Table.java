@@ -10,7 +10,7 @@ public class Table {
     public Table() {
         shuffle = new Shuffle();
         check = new Check();
-        player = new Player();
+        player = new Player(Utils.getName(), Utils.getMoney());
         dealer = new Dealer();
         which = 0;
         total = 1;
@@ -22,7 +22,7 @@ public class Table {
             player.makeBet();
             shuffle.giveNewCard(player);
             shuffle.giveNewCard(dealer);
-            Utils.printHandCard(dealer, 0);
+            Utils.printDealerHandCard(dealer);
             Utils.printHandCard(player, 0);
             while (true) {
                 int action = player.takeAction(which);
@@ -30,7 +30,7 @@ public class Table {
                     if (action == Config.SPLITACTION)
                         total++;
                     shuffle.giveOneCard(player, which);
-                    Utils.printHandCard(dealer, 0);
+                    Utils.printDealerHandCard(dealer);
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -46,7 +46,7 @@ public class Table {
                 }
                 else if (action == Config.DOUBLEACTION) {
                     shuffle.giveOneCard(player, which);
-                    Utils.printHandCard(dealer, 0);
+                    Utils.printDealerHandCard(dealer);
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -62,7 +62,9 @@ public class Table {
             }
             for (int i = 0; i < player.getHandCard().size(); i++)
                 player.endGame(check.checkWin(player, dealer, i), i);
-            // ask new game
+            char c = Utils.nextGame();
+            if (c != 'y' && c != 'Y')
+                flag = false;
         }
     }
 

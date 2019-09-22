@@ -18,7 +18,12 @@ public class Check {
 	private int checkTotal(Person P, int which) {
 		List<HandCard> hc = P.getHandCard();
 		int[] v = hc.get(which).getValue();
-		return v[which];
+		int max = 0;
+		for (int total : v) {
+			if (total > max && total <= 21)
+				max = total;
+		}
+		return max;
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
