@@ -21,6 +21,11 @@ public class Shuffle {
         this(1);
     }
 
+    public void newShuffle() {
+        for (int i = 0; i < mask.length; i++)
+            mask[i] = 0;
+    }
+
     public void giveNewCard(Person p) {
         p.deleteHandCard();
         giveOneCard(p, 0);

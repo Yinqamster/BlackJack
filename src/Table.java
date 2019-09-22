@@ -29,9 +29,12 @@ public class Table {
         while (flag) {
             if(!player.makeBet())
                 break;
+            shuffle.newShuffle();
             shuffle.giveNewCard(player);
             shuffle.giveNewCard(dealer);
+            System.out.print("The dealer's cards: ");
             Utils.printDealerHandCard(dealer);
+            System.out.print("The player's cards: ");
             Utils.printHandCard(player, 0);
             while (true) {
                 int action = player.takeAction(which);
@@ -39,7 +42,9 @@ public class Table {
                     if (action == Config.SPLITACTION)
                         total++;
                     shuffle.giveOneCard(player, which);
+                    System.out.print("The dealer's cards: ");
                     Utils.printDealerHandCard(dealer);
+                    System.out.print("The Player's cards: ");
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -55,7 +60,9 @@ public class Table {
                 }
                 else if (action == Config.DOUBLEACTION) {
                     shuffle.giveOneCard(player, which);
+                    System.out.print("The dealer's cards: ");
                     Utils.printDealerHandCard(dealer);
+                    System.out.print("The player's cards: ");
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -83,7 +90,9 @@ public class Table {
             return 0;
         }
         shuffle.keepGive(dealer);
+        System.out.print("The dealer's cards: ");
         Utils.printHandCard(dealer, 0);
+        System.out.print("The player's cards: ");
         Utils.printHandCard(player, 0);
         return 1;
     }
