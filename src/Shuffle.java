@@ -42,7 +42,15 @@ public class Shuffle {
     }
 
     public void keepGive(Dealer dealer) {
-        while (dealer.getHandCard().get(0).getValue()[0] < 17)
+        int[] v = dealer.getHandCard().get(0).getValue();
+        int max = 0;
+        for (int n : v) {
+            if (n > max && n <= 21)
+                max = n;
+        }
+        if (max < 17) {
             giveOneCard(dealer, 0);
+            keepGive(dealer);
+        }
     }
 }

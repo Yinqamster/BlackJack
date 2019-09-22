@@ -14,19 +14,26 @@ public class Utils {
 		return number;
 	}
 	
-	public static String getName() {
-		System.out.print("What's your name: ");
-		return scanner.nextLine();
+	public static String getName(String name) {
+		String str;
+		do {
+			System.out.print("What's " + name + " name: ");
+			str = scanner.nextLine();
+		} while (str.length() == 0);
+		return str;
 	}
 
 	public static boolean realMan() {
-		System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
-		String str = scanner.nextLine();
+		String str;
+		do {
+			System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
+			str = scanner.nextLine();
+		} while (str.length() == 0);
 		return (str.charAt(0) == 'y' || str.charAt(0) == 'Y');
 	}
 
 	public static int getMoney() {
-		System.out.print("How many money do you have: ");
+		System.out.print("How many money do you have: (default 200) ");
 		boolean flag = true;
 		int m = 0;
 		while (flag) {
@@ -44,12 +51,15 @@ public class Utils {
 			}
 			flag = temp;
 		}
-		return m;
+		return m == 0 ? 200 : m;
 	}
 
 	public static char nextGame() {
-		System.out.print("New game? Y/y for yes, other for no: ");
-		String str = scanner.nextLine();
+		String str;
+		do {
+			System.out.print("New game? Y/y for yes, other for no: ");
+			str = scanner.nextLine();
+		} while (str.length() == 0);
 		return str.charAt(0);
 	}
 	
@@ -64,7 +74,6 @@ public class Utils {
 	}
 	
 	public static void printHandCard(Person p, int index) {
-		System.out.print("Player's handcard:\t");
 		List<HandCard> handCardList = p.getHandCard();
 		List<Card> handCard = handCardList.get(index).getCards();
 		for(int i = 0; i < handCard.size(); i++) {
@@ -74,7 +83,7 @@ public class Utils {
 	}
 
 	public static void printDealerHandCard(Person d) {
-		System.out.print("Dealer's handcard:\t");
+		System.out.print("Dealer's hand card:\t");
 		List<HandCard> handCardList = d.getHandCard();
 		List<Card> handCard = handCardList.get(0).getCards();
 		System.out.print(handCard.get(0).getNumber() + " ");

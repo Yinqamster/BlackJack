@@ -8,15 +8,17 @@ public class Table {
     private boolean flag;
 
     public Table() {
-    	System.out.println("Welcome to the BlackJack game, the objective of the game is to accumulate a hand of cards that equals 21 (Blackjack!) or a hand that has a card value greater than your opponents without exceeding 21.");
+    	System.out.println("Welcome to the BlackJack game.");
+    	System.out.println("The objective of the game is to accumulate a hand of cards that equals 21.");
+    	System.out.println("Or a hand that has a card value greater than your opponents without exceeding 21.");
         shuffle = new Shuffle();
         check = new Check();
-        String str = Utils.getName();
+        String str = Utils.getName("player");
         int money = Utils.getMoney();
         player = new Player(str, money);
         boolean isMan = Utils.realMan();
         if (isMan) {
-            str = Utils.getName();
+            str = Utils.getName("dealer");
             dealer = new Dealer(str);
         }
         else
@@ -33,9 +35,8 @@ public class Table {
             shuffle.newShuffle();
             shuffle.giveNewCard(player);
             shuffle.giveNewCard(dealer);
-            System.out.print("The dealer's cards: ");
             Utils.printDealerHandCard(dealer);
-            System.out.print("The player's cards: ");
+            System.out.print("Player's hand card:\t");
             Utils.printHandCard(player, 0);
             while (true) {
                 int action = player.takeAction(which);
@@ -43,9 +44,8 @@ public class Table {
                     if (action == Config.SPLITACTION)
                         total++;
                     shuffle.giveOneCard(player, which);
-                    System.out.print("The dealer's cards: ");
                     Utils.printDealerHandCard(dealer);
-                    System.out.print("The Player's cards: ");
+                    System.out.print("Player's hand card:\t");
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -61,9 +61,8 @@ public class Table {
                 }
                 else if (action == Config.DOUBLEACTION) {
                     shuffle.giveOneCard(player, which);
-                    System.out.print("The dealer's cards: ");
                     Utils.printDealerHandCard(dealer);
-                    System.out.print("The player's cards: ");
+                    System.out.print("Player's hand card:\t");
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);
@@ -91,9 +90,9 @@ public class Table {
             return 0;
         }
         shuffle.keepGive(dealer);
-        System.out.print("The dealer's cards: ");
+        System.out.print("Dealer's hand card:\t");
         Utils.printHandCard(dealer, 0);
-        System.out.print("The player's cards: ");
+        System.out.print("Player's hand card:\t");
         Utils.printHandCard(player, 0);
         return 1;
     }
