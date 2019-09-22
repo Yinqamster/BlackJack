@@ -34,11 +34,11 @@ public class Check {
 			if (checkTotal(P, which)==checkTotal(D, 0)) {
 				if (checkTotal(P, which) < 21)
 					return Config.DEAL;
-				if (P.getHandCard().get(which).isBlackJack() && D.getHandCard().get(which).isBlackJack())
+				if (P.getHandCard().get(which).isBlackJack() && D.getHandCard().get(0).isBlackJack())
 					return Config.DEAL;
 				if (P.getHandCard().get(which).isBlackJack())
 					return Config.PLAYERWIN;
-				if (D.getHandCard().get(which).isBlackJack())
+				if (D.getHandCard().get(0).isBlackJack())
 					return Config.DEALERWIN;
 				return Config.DEAL;
 			}
