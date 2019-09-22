@@ -25,6 +25,7 @@ public class Player extends Person{
 	}
 	
 	public int takeAction(int index){
+		System.out.println("========================================");
 		System.out.println("Please select your action: ");
 		System.out.println(Config.HITACTION + " Hit.");
 		System.out.println(Config.STANDACTION+ " Stand.");
@@ -51,7 +52,7 @@ public class Player extends Person{
 							|| handCard.size() != 1
 							|| handCard.get(0).getCards().size() != 2
 							|| !(handCard.get(0).getCards().get(0).getValue() == handCard.get(0).getCards().get(1).getValue())){
-						System.out.println("bet size: " + bet.size());
+						//System.out.println("bet size: " + bet.size());
 						System.out.print("You cannot take this action, please choose again:");
 						break;
 					}

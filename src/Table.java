@@ -61,9 +61,9 @@ public class Table {
                 }
                 else if (action == Config.DOUBLEACTION) {
                     shuffle.giveOneCard(player, which);
-                    System.out.print("The dealer's cards: ");
+                    System.out.print("Dealer's cards: \t");
                     Utils.printDealerHandCard(dealer);
-                    System.out.print("The player's cards: ");
+                    System.out.print("Player's cards: \t");
                     Utils.printHandCard(player, 0);
                     if (check.checkBust(player, which)) {
                         player.endGame(Config.BUST, which);

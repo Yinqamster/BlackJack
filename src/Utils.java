@@ -64,7 +64,6 @@ public class Utils {
 	}
 	
 	public static void printHandCard(Person p, int index) {
-		System.out.print("Player's handcard:\t");
 		List<HandCard> handCardList = p.getHandCard();
 		List<Card> handCard = handCardList.get(index).getCards();
 		for(int i = 0; i < handCard.size(); i++) {
@@ -74,7 +73,6 @@ public class Utils {
 	}
 
 	public static void printDealerHandCard(Person d) {
-		System.out.print("Dealer's handcard:\t");
 		List<HandCard> handCardList = d.getHandCard();
 		List<Card> handCard = handCardList.get(0).getCards();
 		System.out.print(handCard.get(0).getNumber() + " ");
