@@ -17,7 +17,7 @@ public class Utils {
 	public static String getName(String name) {
 		String str;
 		do {
-			System.out.print("What's " + name + " name: ");
+			System.out.print("What's " + name + "'s name: ");
 			str = scanner.nextLine();
 		} while (str.length() == 0);
 		return str;
@@ -65,7 +65,7 @@ public class Utils {
 	
 	public static int getNumberFromPlayer(){
 		String str = scanner.nextLine();
-		while(!str.matches("^[0-9]*$")) {
+		while(!str.matches("^[0-9]*$") || str.isEmpty()) {
 			System.out.print("Please input a correct number: ");
 			str = scanner.nextLine();
 		}
