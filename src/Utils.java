@@ -83,7 +83,6 @@ public class Utils {
 	}
 
 	public static void printDealerHandCard(Person d) {
-		System.out.print("Dealer's hand card:\t");
 		List<HandCard> handCardList = d.getHandCard();
 		List<Card> handCard = handCardList.get(0).getCards();
 		System.out.print(handCard.get(0).getNumber() + " ");
