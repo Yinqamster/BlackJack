@@ -49,6 +49,7 @@ public class Shuffle {
             if (n > max && n <= 21)
                 max = n;
         }
+        System.out.println(max);
         if (max < 17) {
             giveOneCard(dealer, 0);
             keepGive(dealer);
