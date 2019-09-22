@@ -78,7 +78,7 @@ public class Player extends Person{
 					}
 					
 					if(currentMoney < bet.get(index).getBet()) {
-						System.out.print("Player cannot take this action, please choose again:");
+						System.out.print(super.getName() + " cannot take this action, please choose again:");
 						break;
 					}
 					else {
@@ -97,10 +97,10 @@ public class Player extends Person{
 		bet.clear();
 		int currentMoney = wallet.getMoney();
 		if(currentMoney < Config.MINBET) {
-			System.out.println("Player don't have enough money!!");
+			System.out.println(super.getName() + " don't have enough money!!");
 			return false;
 		}
-		System.out.print("Please input the money player want to bet: ");
+		System.out.print("Please input the money" + super.getName() + " want to bet: ");
 		
 		int money = Utils.getNumberFromPlayer();
 		while(money > currentMoney || money > Config.MAXBET || money < Config.MINBET) {
@@ -118,9 +118,9 @@ public class Player extends Person{
 		bet.add(new Bet(money));
 		wallet.setWallet(currentMoney - money);
 
-		System.out.print("Player's current bet: ");
+		System.out.print(super.getName() + " current bet: ");
 		Utils.printBet(this, 0);
-		System.out.print("Player's current wallet:");
+		System.out.print(super.getName() + " current wallet:");
 		System.out.println(wallet.getMoney());
 		return true;
 		
@@ -129,7 +129,7 @@ public class Player extends Person{
 	public void endGame(int result, int index) {
 		switch(result) {
 			case Config.PLAYERWIN: {
-				System.out.println("Player win!");
+				System.out.println(super.getName() + " win!");
 				//TODO
 				wallet.winMoney(2*bet.get(index).getBet());
 				break;
@@ -141,7 +141,7 @@ public class Player extends Person{
 				break;
 			}
 			case Config.DEALERWIN: {
-				System.out.println("Dealer lose!");
+				System.out.println(super.getName() + " lose!");
 				break;
 			}
 			case Config.BUST: {
