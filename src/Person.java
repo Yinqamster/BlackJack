@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Person {
 	private String name;
-	protected Wallet wallet;
+//	protected Wallet wallet;
 	protected List<HandCard> handCard;
 
 	public Person(){
@@ -15,9 +15,9 @@ public class Person {
 		this.name = name;
 	}
 	
-	public Wallet getWallet(){
-		return this.wallet;
-	}
+//	public Wallet getWallet(){
+//		return this.wallet;
+//	}
 
 	public void deleteHandCard() {
 		handCard.clear();

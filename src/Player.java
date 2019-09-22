@@ -11,8 +11,17 @@ public class Player extends Person{
 		super(name);
 	}
 	
+	public Player(String name, int money) {
+		super(name);
+		wallet.setWallet(money);
+	}
+	
 	public List<Bet> getBet() {
 		return this.bet;
+	}
+	
+	public Wallet getWallet() {
+		return this.wallet;
 	}
 	
 	public int takeAction(int index){
