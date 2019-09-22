@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Player extends Person{
 
@@ -10,6 +9,10 @@ public class Player extends Person{
 	
 	public Player(String name) {
 		super(name);
+	}
+	
+	public List<Bet> getBet() {
+		return this.bet;
 	}
 	
 	public int takeAction(int index){
@@ -22,11 +25,11 @@ public class Player extends Person{
 		int currentMoney = wallet.getMoney();
 		
 		while(true) {
-			int action = getNumberFromPlayer();
+			int action = Utils.getNumberFromPlayer();
 			while (action != Config.HITACTION && action != Config.STANDACTION
 					&& action != Config.SPLITACTION && action != Config.DOUBLEACTION) {
 				System.out.print("Please choose a correct action: ");
-				getNumberFromPlayer();
+				Utils.getNumberFromPlayer();
 			}
 			
 			switch (action) {
@@ -60,7 +63,7 @@ public class Player extends Person{
 					int size = bet.size();
 					//this shouldn't happen!!!
 					if(!(index >= 0 && index < size)){
-						System.out.println("wrong index");
+						System.out.println("wrong index1");
 						return -1;
 					}
 					
@@ -80,27 +83,13 @@ public class Player extends Person{
 		}
 	}
 	
-	//TODO
-	//should move to another common place!!
-	public static int getNumberFromPlayer(){
-		Scanner scanner = new Scanner(System.in);
-		String str = scanner.nextLine();
-		while(!str.matches("^[0-9]*$")) {
-			System.out.print("Please input a correct number: ");
-			str = scanner.nextLine();
-		}
-		int num = Integer.parseInt(str);
-		return num;
-	}
-	
-	
 	public void makeBet(){
 		
 		//TODO
 		int currentMoney = wallet.getMoney();
 		System.out.print("Please input the money you want to bet: ");
 		
-		int money = getNumberFromPlayer();
+		int money = Utils.getNumberFromPlayer();
 		while(money > currentMoney || money > Config.MAXBET || money < Config.MINBET) {
 			if(money > currentMoney) {
 				System.out.print("The bet should be less than your total money, input again:");
@@ -110,13 +99,16 @@ public class Player extends Person{
 				System.out.print("Please input again:");
 			}
 			
-			money = getNumberFromPlayer();
+			money = Utils.getNumberFromPlayer();
 		}
 		
 		bet.add(new Bet(money));
 		wallet.setWallet(currentMoney - money);
 		
-//		System.out.println(money);
+		//only for test
+		Utils.printBet(this, 0);
+		System.out.println(wallet.getMoney());
+		
 	}
 	
 	public void endGame(int result, int index) {
