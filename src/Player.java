@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Player extends Person{
 
 	List<Bet> bet = new ArrayList<Bet>();
-	
+	private Wallet wallet = new Wallet();
 	public Player() {}
 	
 	public Player(String name) {
@@ -55,7 +55,7 @@ public class Player extends Person{
 						handCardList1.getCards().remove(1);
 						handCard.add(handCardList2);
 						//TODO
-//						wallet.setWallet(currentMoney - bet2.getBet());
+						wallet.setWallet(currentMoney - bet2.getBet());
 						return Config.SPLITACTION;
 					}
 				}
@@ -75,7 +75,7 @@ public class Player extends Person{
 						int betNum = bet.get(index).getBet();
 						bet.get(index).setBet(2 * betNum);
 						//TODO
-//						wallet.setWallet(currentMoney - betNum);
+						wallet.setWallet(currentMoney - betNum);
 						System.out.println(bet.get(index).getBet());
 						return Config.DOUBLEACTION;
 					}
@@ -119,7 +119,7 @@ public class Player extends Person{
 		
 		bet.add(new Bet(money));
 		//TODO
-//		wallet.setWallet(currentMoney - money);
+		wallet.setWallet(currentMoney - money);
 		
 //		System.out.println(money);
 	}
@@ -129,13 +129,13 @@ public class Player extends Person{
 			case Config.PLAYERWIN: {
 				System.out.println("You win!");
 				//TODO
-	//			wallet.setWallet(wallet.getMoney + 2*bet.get(index).getBet());
+				wallet.setWallet(wallet.getMoney() + 2*bet.get(index).getBet());
 				break;
 			}
 			case Config.DEAL: {
 				System.out.println("Deal!");
 				//TODO
-	//			wallet.setWallet(wallet.getMoney + bet.get(index).getBet());
+				wallet.setWallet(wallet.getMoney() + bet.get(index).getBet());
 				break;
 			}
 			case Config.DEALERWIN: {

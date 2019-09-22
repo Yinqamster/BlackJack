@@ -37,7 +37,7 @@ public class Shuffle {
     }
 
     public void keepGive(Dealer dealer) {
-        while (dealer.getHandCard().getValue() < 17)
+        while (((Card) dealer.getHandCard()).getValue() < 17)
             giveOneCard(dealer, 0);
     }
 }
