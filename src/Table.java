@@ -10,9 +10,14 @@ public class Table {
     public Table() {
         shuffle = new Shuffle();
         check = new Check();
-        player = new Player(Utils.getName(), Utils.getMoney());
-        if (Utils.realMan())
-            dealer = new Dealer(Utils.getName());
+        String str = Utils.getName();
+        int money = Utils.getMoney();
+        player = new Player(str, money);
+        boolean isMan = Utils.realMan();
+        if (isMan) {
+            str = Utils.getName();
+            dealer = new Dealer(str);
+        }
         else
             dealer = new Dealer();
         which = 0;
@@ -22,7 +27,8 @@ public class Table {
 
     public void playGame() {
         while (flag) {
-            player.makeBet();
+            if(!player.makeBet())
+                break;
             shuffle.giveNewCard(player);
             shuffle.giveNewCard(dealer);
             Utils.printDealerHandCard(dealer);

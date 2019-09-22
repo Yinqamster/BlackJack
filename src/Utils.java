@@ -11,8 +11,8 @@ public class Utils {
 
 	public static boolean realMan() {
 		System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
-		char c = nextGame();
-		return (c == 'y' || c == 'Y');
+		String str = scanner.nextLine();
+		return (str.charAt(0) == 'y' || str.charAt(0) == 'Y');
 	}
 
 	public static int getMoney() {
