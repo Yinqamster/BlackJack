@@ -3,7 +3,7 @@ public class Wallet {
 	private int money;
 	
 	public Wallet() {
-		money = 0;
+		money = Config.currentMoney;
 	}
 	
 	public int getMoney() {

@@ -28,16 +28,16 @@ public class Shuffle {
     }
 
     public void giveOneCard(Person p, int which) {
-        int a = (int)(Math.random() * (Config.CARDNUM + 1));
+        int a = (int)(Math.random() * (Config.CARDNUM));
         while (mask[a] == 1) {
-            a = (int)(Math.random() * (Config.CARDNUM + 1));
+            a = (int)(Math.random() * (Config.CARDNUM));
         }
         mask[a] = 1;
         p.giveCard(cards[a], which);
     }
 
     public void keepGive(Dealer dealer) {
-        while (((Card) dealer.getHandCard()).getValue() < 17)
+        while (dealer.getHandCard().get(0).getValue()[0] < 17)
             giveOneCard(dealer, 0);
     }
 }

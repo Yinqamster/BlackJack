@@ -7,29 +7,44 @@ public class Check {
 	
 	public boolean checkBust(Person P, int which) {
 		List<HandCard> hc = P.getHandCard();
-		int[] v = ((HandCard) hc).getValue();
-		if (v[which]>21) {
-			return true;
+		int[] v = hc.get(which).getValue();
+		for (int i : v) {
+			if (i <= 21)
+				return false;
 		}
-		else return false;
+		return true;
 	}
 	
-	public int checkTotal(Person P, int which) {
+	private int checkTotal(Person P, int which) {
 		List<HandCard> hc = P.getHandCard();
-		int[] v = ((HandCard) hc).getValue();
+		int[] v = hc.get(which).getValue();
 		return v[which];
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
-		if (checkBust(P, which)==false) {
+		if (!checkBust(P, which) && !checkBust(D, which)) {
 			if (checkTotal(P, which)>checkTotal(D, 0)) {
-				return 1;
+				return Config.PLAYERWIN;
 			}
 			if (checkTotal(P, which)==checkTotal(D, 0)) {
-				return 0;
+				if (checkTotal(P, which) < 21)
+					return Config.DEAL;
+				if (P.getHandCard().get(which).isBlackJack() && D.getHandCard().get(which).isBlackJack())
+					return Config.DEAL;
+				if (P.getHandCard().get(which).isBlackJack())
+					return Config.PLAYERWIN;
+				if (D.getHandCard().get(which).isBlackJack())
+					return Config.DEALERWIN;
+				return Config.DEAL;
 			}
-			else return -1;
+			else return Config.DEALERWIN;
 		}
-		else return -1;		
+		else {
+			if (checkBust(P, which))
+				return Config.DEALERWIN;
+			if (checkBust(D, which))
+				return Config.PLAYERWIN;
+			return Config.DEAL;
+		}
 	}
 }

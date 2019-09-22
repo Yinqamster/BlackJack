@@ -28,6 +28,18 @@ public class HandCard {
         return temp;
     }
 
+    public boolean isBlackJack() {
+        if (cards.size() != 2)
+            return false;
+        Card a = cards.get(0);
+        Card b = cards.get(1);
+        if (a.getValue() > 1 && a.getValue() <= 10)
+            return false;
+        if (a.getValue() == 1 && b.getValue() > 10)
+            return true;
+        return a.getValue() > 10 && b.getValue() == 1;
+    }
+
     public List<Card> getCards() {
         return cards;
     }
