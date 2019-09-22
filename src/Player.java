@@ -93,9 +93,13 @@ public class Player extends Person{
 		}
 	}
 	
-	public void makeBet(){
+	public boolean makeBet(){
 		bet.clear();
 		int currentMoney = wallet.getMoney();
+		if(currentMoney < Config.MINBET) {
+			System.out.println("You don't have enough money!!");
+			return false;
+		}
 		System.out.print("Please input the money you want to bet: ");
 		
 		int money = Utils.getNumberFromPlayer();
@@ -117,6 +121,7 @@ public class Player extends Person{
 		//only for test
 		Utils.printBet(this, 0);
 		System.out.println(wallet.getMoney());
+		return true;
 		
 	}
 	
