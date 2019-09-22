@@ -17,7 +17,7 @@ public class Utils {
 	public static String getName(String name) {
 		String str;
 		do {
-			System.out.print("What's " + name + " name: ");
+			System.out.print("What's " + name + "'s name: ");
 			str = scanner.nextLine();
 		} while (str.length() == 0);
 		return str;
