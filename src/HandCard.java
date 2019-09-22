@@ -21,7 +21,7 @@ public class HandCard {
         }
         List<Integer> rst = new ArrayList<>();
         for (int i = 0; i <= ace; i++)
-            rst.add(total + i * 10 + ace - i);
+            rst.add(total + i * 11 + ace - i);
         int[] temp = new int[rst.size()];
         for (int i = 0; i < rst.size(); i++)
             temp[i] = rst.get(i);
