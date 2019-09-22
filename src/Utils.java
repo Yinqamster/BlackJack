@@ -5,7 +5,14 @@ public class Utils {
 	private static Scanner scanner = new Scanner(System.in);
 
 	public static String getName() {
+		System.out.print("What's your name: ");
 		return scanner.nextLine();
+	}
+
+	public static boolean realMan() {
+		System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
+		char c = nextGame();
+		return (c == 'y' || c == 'Y');
 	}
 
 	public static int getMoney() {

@@ -11,7 +11,10 @@ public class Table {
         shuffle = new Shuffle();
         check = new Check();
         player = new Player(Utils.getName(), Utils.getMoney());
-        dealer = new Dealer();
+        if (Utils.realMan())
+            dealer = new Dealer(Utils.getName());
+        else
+            dealer = new Dealer();
         which = 0;
         total = 1;
         flag = true;
