@@ -3,9 +3,9 @@ public class Table {
     private Check check;
     private Player player;
     private Dealer dealer;
-    private int which;
-    private int total;
-    private boolean flag;
+    private int which; // which hand cards are the player manipulate now
+    private int total; // how many hand cards the player has now
+    private boolean flag; // whether a new game
 
     public Table() {
     	System.out.println("Welcome to the BlackJack game.");

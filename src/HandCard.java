@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HandCard {
-    List<Card> cards;
+    private List<Card> cards;
 
     public HandCard() {
         cards = new ArrayList<>();

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Player extends Person{
 
-	List<Bet> bet = new ArrayList<Bet>();
+	private List<Bet> bet = new ArrayList<Bet>();
 	private Wallet wallet = new Wallet();
 	public Player() {}
 	
