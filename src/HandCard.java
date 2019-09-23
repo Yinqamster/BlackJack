@@ -9,6 +9,7 @@ public class HandCard {
     }
 
     public int[] getValue() {
+        // get all the possible results of the hand cards total value (take ace = 1 or take ace = 11)
         int total = 0;
         int ace = 0;
         for (Card card : cards) {
@@ -29,6 +30,7 @@ public class HandCard {
     }
 
     public boolean isBlackJack() {
+        //test whether the hand cards is black jack or not
         if (cards.size() != 2)
             return false;
         Card a = cards.get(0);

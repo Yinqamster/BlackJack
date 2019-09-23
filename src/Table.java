@@ -16,7 +16,7 @@ public class Table {
         String str = Utils.getName("player");
         int money = Utils.getMoney();
         player = new Player(str, money);
-        boolean isMan = Utils.realMan();
+        boolean isMan = Utils.realMan(); //ask whether the dealer is a real man or not
         if (isMan) {
             str = Utils.getName("dealer");
             dealer = new Dealer(str);
@@ -29,6 +29,7 @@ public class Table {
     }
 
     public void playGame() {
+        // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (flag) {
             if(!player.makeBet())
                 break;
@@ -80,18 +81,21 @@ public class Table {
     }
 
     private void giveAndPrint() {
+        //give one card to the player and then print the hand cards
         shuffle.giveOneCard(player, which);
         System.out.print(dealer.getName() + "'s handcards:\t");
         Utils.printDealerHandCard(dealer);
         System.out.print(player.getName() + "'s handcards:\t");
         Utils.printHandCard(player, 0);
         if (total == 2) {
+            // if the player split his hand cards, he has two hand card sets
             System.out.print(player.getName() + "'s second handcards:\t");
             Utils.printHandCard(player, 1);
         }
     }
 
     private int standAction() {
+        // after the player stand, use this method to do the following work
         if (total > which + 1) {
             which++;
             return 0;

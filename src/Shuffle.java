@@ -1,6 +1,6 @@
 public class Shuffle {
     private Card[] cards;
-    private int[] mask;
+    private int[] mask; //mask for the cards have already been given to the dealer or player
 
     public Shuffle(int n) {
         cards = new Card[n * Config.CARDNUM];
@@ -28,12 +28,14 @@ public class Shuffle {
     }
 
     public void giveNewCard(Person p) {
+        // at the start of the game, give the dealer and player two cards
         p.deleteHandCard();
         giveOneCard(p, 0);
         giveOneCard(p, 0);
     }
 
     public void giveOneCard(Person p, int which) {
+        // give one card to p
         int a = (int)(Math.random() * (Config.CARDNUM));
         while (mask[a] == 1) {
             a = (int)(Math.random() * (Config.CARDNUM));
@@ -43,11 +45,13 @@ public class Shuffle {
     }
 
     public void keepGive(Dealer dealer) {
+        // keep give dealer cards if dealer's hand cards' value is less than 17
         while (max(dealer.getHandCard().get(0).getValue()) < 17)
             giveOneCard(dealer, 0);
     }
 
     private int max(int[] a) {
+        // get the max value of the possible value of the hand cards
         int max = 0;
         for (int v : a)
             if (max < v)
