@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Person {
 	private String name;
-//	protected Wallet wallet;
 	protected List<HandCard> handCard;
 
 	public Person(){
@@ -15,11 +14,8 @@ public class Person {
 		this.name = name;
 	}
 	
-//	public Wallet getWallet(){
-//		return this.wallet;
-//	}
-
 	public void deleteHandCard() {
+		//delete the person's all hand cards
 		handCard.clear();
 	}
 	
@@ -29,6 +25,7 @@ public class Person {
 			System.out.println("wrong index2");
 			return;
 		}
+		//add one card into handcard list
 		if(handCard.size() == 0) {
 			HandCard newHandCard = new HandCard();
 			newHandCard.getCards().add(card);

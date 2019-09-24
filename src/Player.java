@@ -5,6 +5,7 @@ public class Player extends Person{
 
 	private List<Bet> bet = new ArrayList<Bet>();
 	private Wallet wallet = new Wallet();
+	
 	public Player() {}
 	
 	public Player(String name) {
@@ -25,6 +26,7 @@ public class Player extends Person{
 	}
 	
 	public int takeAction(int index){
+		//for the index hand of card, take the action(hit, stand, split, double up)
 		System.out.println("========================================");
 		if(handCard.size() == 2) {
 			System.out.println(super.getName() + ", please select action for your " + (index+1) + " hand cards: ");
@@ -91,7 +93,6 @@ public class Player extends Person{
 						int betNum = bet.get(index).getBet();
 						bet.get(index).setBet(2 * betNum);
 						wallet.setWallet(currentMoney - betNum);
-						System.out.println(bet.get(index).getBet());
 						return Config.DOUBLEACTION;
 					}
 				}
@@ -100,6 +101,7 @@ public class Player extends Person{
 	}
 	
 	public boolean makeBet(){
+		//make bet at the beginning of the game
 		bet.clear();
 		int currentMoney = wallet.getMoney();
 		if(currentMoney < Config.MINBET) {
@@ -133,6 +135,7 @@ public class Player extends Person{
 	}
 	
 	public void endGame(int result, int index) {
+		//get the result of the index hand of card
 		switch(result) {
 			case Config.PLAYERWIN: {
 				if(handCard.size() == 2) {
@@ -146,7 +149,6 @@ public class Player extends Person{
 			}
 			case Config.DEAL: {
 				System.out.println("Deal!");
-				//TODO
 				wallet.winMoney(bet.get(index).getBet());
 				break;
 			}
