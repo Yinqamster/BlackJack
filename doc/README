@@ -1,0 +1,18 @@
+The program initials like this:
+1, input player's name
+2, input player's money
+3, choose whether the dealer is a real man or not
+4, if the dealer is a real man, input the dealer's name
+
+Each round of the Black Jack's goes like this:
+1, check whether the player has more than then $10 (the least bet is $10)
+2, player input the money he wants to bet (more than $10 and less than $100)
+3, player keeps choosing from four actions (hit, stand, split, double up)
+4, the system gives our the result of this round, finish current round
+5, system asks the player whether wanna play a new game
+6, if yes go step 1
+7, if no, end the Black Jack game
+
+At the end of the system:
+print the final money the player has
+

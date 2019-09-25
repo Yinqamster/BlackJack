@@ -78,6 +78,8 @@ public class Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
+        System.out.print("The player's final money in wallet is: ");
+        System.out.print(player.getWallet().getMoney());
     }
 
     private void giveAndPrint() {
