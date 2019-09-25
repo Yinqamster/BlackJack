@@ -1,5 +1,6 @@
 
 public class Bet {
+	// set the bet of each round
 	private int bet;
 	
 	public Bet(){}

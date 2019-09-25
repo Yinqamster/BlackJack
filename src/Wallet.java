@@ -1,5 +1,6 @@
 
 public class Wallet {
+	// set wallet for player or dealer
 	private int money;
 	
 	public Wallet() {

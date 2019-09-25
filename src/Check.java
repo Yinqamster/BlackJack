@@ -6,6 +6,7 @@ public class Check {
 	}
 	
 	public boolean checkBust(Person P, int which) {
+        // check if the hand cards of each person is greater than 21 or not 
 		List<HandCard> hc = P.getHandCard();
 		int[] v = hc.get(which).getValue();
 		for (int i : v) {
@@ -16,6 +17,7 @@ public class Check {
 	}
 	
 	private int checkTotal(Person P, int which) {
+		// calculate the total value of a set of hand cards
 		List<HandCard> hc = P.getHandCard();
 		int[] v = hc.get(which).getValue();
 		int max = 0;
@@ -27,6 +29,7 @@ public class Check {
 	}
 	
 	public int checkWin(Player P, Person D, int which) {
+		// check who wins
 		if (!checkBust(P, which) && !checkBust(D, 0)) {
 			if (checkTotal(P, which)>checkTotal(D, 0)) {
 				return Config.PLAYERWIN;
