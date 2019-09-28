@@ -44,6 +44,7 @@ public class BlackJackTable implements Table {
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (players.size() != 0) {
+            playerNum = players.size();
             for (BlackJackPlayer player : players) {
                 player.initTotal();
                 player.initWhich();
