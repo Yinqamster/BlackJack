@@ -1,8 +1,6 @@
 
 public class Config {
 
-	public static final int PLAYERNUM = 1;
-
 	public static final int MAXBET = 100;
 	public static final int MINBET = 10;
 	
@@ -20,6 +18,6 @@ public class Config {
 	public static final int CARDRANGE = 13;
 	public static final String[] SUITS = {"Diamond", "Plum", "Heart", "Spade"};
 	public static final String[] NUMBERS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-	
+
 	public static final int DEFAULTMONEY = 200;
 }
