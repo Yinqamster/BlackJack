@@ -174,6 +174,12 @@ public class Player extends Person{
 				break;
 			}
 			case Config.DEAL: {
+				if(handCard.size() == 2) {
+					System.out.println(super.getName() + "'s " + (which+1) + " hand deal!");
+				}
+				else {
+					System.out.println("Deal!");
+				}
 				System.out.println("Deal!");
 				wallet.winMoney(bet.get(which).getBet());
 				break;
