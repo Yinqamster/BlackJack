@@ -7,10 +7,8 @@ public class BlackJackTable implements Table {
     private List<BlackJackPlayer> players;
     private BlackJackDealer dealer;
     private boolean flag; // whether a new game
-    private int playerNum;
 
     public BlackJackTable(int playerNum) {
-        this.playerNum = playerNum;
         int all = playerNum;
     	System.out.println("Welcome to the BlackJack game.");
     	System.out.println("The objective of the game is to accumulate a hand of cards that equals 21.");
@@ -49,10 +47,8 @@ public class BlackJackTable implements Table {
                 if(!player.makeBet())
                     break;
                 shuffle.giveNewCard(player);
-                System.out.print(dealer.getName() + "'s handcards:\t");
-                Utils.printDealerHandCard(dealer);
-                System.out.print(player.getName() + "'s handcards:\t");
-                Utils.printHandCard(player, 0);
+                dealer.printDealerHandCard();
+                player.printHandCard();
                 while (true) {
                     int action = player.takeAction();
                     if (action == Config.HITACTION) {
@@ -84,8 +80,7 @@ public class BlackJackTable implements Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
-        for (BlackJackPlayer player : players)
-            System.out.println(player.getName() + "'s final money is: " + player.getWallet().getMoney());
+        printResult();
     }
 
     private boolean hitAction(BlackJackPlayer player) {
@@ -107,15 +102,8 @@ public class BlackJackTable implements Table {
 
     private void print(BlackJackPlayer p) {
         //give one card to the player and then print the hand cards
-        System.out.print(dealer.getName() + "'s handcards:\t");
-        Utils.printDealerHandCard(dealer);
-        System.out.print(p.getName() + "'s handcards:\t");
-        Utils.printHandCard(p, 0);
-        if (p.getTotal() == 2) {
-            // if the player split his hand cards, he has two hand card sets
-            System.out.print(p.getName() + "'s handcards 2:\t");
-            Utils.printHandCard(p, 1);
-        }
+        dealer.printDealerHandCard();
+        p.printHandCard();
     }
 
     private int standAction(BlackJackPlayer p) {
@@ -123,14 +111,8 @@ public class BlackJackTable implements Table {
         if (!p.isOver())
             return 0;
         shuffle.keepGive(dealer);
-        System.out.print(dealer.getName() + "'s handcards:\t");
-        Utils.printHandCard(dealer, 0);
-        System.out.print(p.getName() + "'s handcards:\t");
-        Utils.printHandCard(p, 0);
-        if (p.getTotal() == 2) {
-            System.out.print(p.getName() + "'s handcards 2:\t");
-            Utils.printHandCard(p, 1);
-        }
+        dealer.printHandCard();
+        p.printHandCard();
         return 1;
     }
 }
