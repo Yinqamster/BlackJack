@@ -70,7 +70,7 @@ public class Player extends Person{
 			while (action != Config.HITACTION && action != Config.STANDACTION
 					&& action != Config.SPLITACTION && action != Config.DOUBLEACTION) {
 				System.out.print("Please choose a correct action: ");
-				Utils.getNumberFromPlayer();
+				action = Utils.getNumberFromPlayer();
 			}
 			
 			switch (action) {
@@ -165,7 +165,7 @@ public class Player extends Person{
 		switch(result) {
 			case Config.PLAYERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s " + (which+1) + " hand win!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + " win!");
 				}
 				else {
 					System.out.println(super.getName() + " win!");
@@ -175,18 +175,17 @@ public class Player extends Person{
 			}
 			case Config.DEAL: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s " + (which+1) + " hand deal!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + " end in a tie!");
 				}
 				else {
-					System.out.println("Deal!");
+					System.out.println("The game ends in a tie!");
 				}
-				System.out.println("Deal!");
 				wallet.winMoney(bet.get(which).getBet());
 				break;
 			}
 			case Config.DEALERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s " + (which+1) + " hand lose!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + " lose!");
 				}
 				else {
 					System.out.println(super.getName() + " lose!");
