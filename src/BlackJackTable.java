@@ -5,7 +5,7 @@ public class BlackJackTable implements Table {
     private Shuffle shuffle;
     private BlackJackRules check;
     private List<BlackJackPlayer> players;
-    private Dealer dealer;
+    private BlackJackDealer dealer;
     private boolean flag; // whether a new game
 
     public BlackJackTable(int playerNum) {
@@ -27,10 +27,10 @@ public class BlackJackTable implements Table {
         boolean isMan = Utils.realMan(); //ask whether the dealer is a real man or not
         if (isMan) {
             str = Utils.getName("dealer");
-            dealer = new Dealer(str);
+            dealer = new BlackJackDealer(str);
         }
         else
-            dealer = new Dealer();
+            dealer = new BlackJackDealer();
         flag = true;
     }
 

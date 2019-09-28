@@ -24,34 +24,43 @@ public class BlackJackPlayer extends CardPlayer{
 		return this.which;
 	}
 	
-	public int getTotal() {
-		return this.total;
-	}
-	
 	public void increaseWhich() {
 		this.which++;
 	}
 	
-	public boolean isOver() {
-//		System.out.println("total: " + total);
-//		System.out.println("which: " + which);
-		return total == which;
-	}
-
 	public void initWhich() {
 		this.which = 0;
+	}
+	
+	public int getTotal() {
+		return this.total;
 	}
 	
 	public void initTotal() {
 		this.total = 1;
 	}
 	
+	public boolean isOver() {
+		return total == which;
+	}
+
 	public List<Bet> getBet() {
 		return this.bet;
 	}
 	
+	public void printBet() {
+		for(Bet b : bet) {
+			System.out.print(b.getBet());
+		}
+		System.out.println();
+	}
+	
 	public Wallet getWallet() {
 		return this.wallet;
+	}
+	
+	public void printWallet() {
+		System.out.println(wallet.getMoney());
 	}
 	
 	public int takeAction(){
@@ -160,7 +169,7 @@ public class BlackJackPlayer extends CardPlayer{
 		wallet.setWallet(currentMoney - money);
 
 		System.out.print(super.getName() + "'s bet:\t");
-		Utils.printBet(this, 0);
+		printBet();
 		System.out.print(super.getName() + "'s wallet:\t");
 		System.out.println(wallet.getMoney());
 		return true;
@@ -210,8 +219,6 @@ public class BlackJackPlayer extends CardPlayer{
 			}
 		}
 		which++;
-		
 	}
-
 }
 

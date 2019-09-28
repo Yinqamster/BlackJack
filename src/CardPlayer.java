@@ -14,6 +14,10 @@ public class CardPlayer extends Person{
 		handCard = new ArrayList<HandCard>();
 	}
 	
+	public List<HandCard> getHandCard() {
+		return this.handCard;
+	}
+	
 	public void deleteHandCard() {
 		//delete the person's all hand cards
 		handCard.clear();
@@ -37,13 +41,14 @@ public class CardPlayer extends Person{
 		
 	}
 	
-	public String getName() {
-		return super.getName();
+	public void printHandCard() {
+		for(HandCard hc : handCard) {
+			List<Card> cards = hc.getCards();
+			for(Card card : cards) {
+				System.out.print(card.getNumber() + "(" + card.getSuit() + ") ");
+			}
+		}
+		System.out.println();
 	}
-	
-	public List<HandCard> getHandCard() {
-		return this.handCard;
-	}
-	
 	
 }
