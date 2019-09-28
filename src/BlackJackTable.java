@@ -3,7 +3,7 @@ import java.util.List;
 
 public class BlackJackTable implements Table {
     private Shuffle shuffle;
-    private Check check;
+    private BlackJackRules check;
     private List<Player> players;
     private Dealer dealer;
     private boolean flag; // whether a new game
@@ -15,7 +15,7 @@ public class BlackJackTable implements Table {
     	System.out.println("Or a hand that has a card value greater than your opponents without exceeding 21.");
     	players = new ArrayList<>();
         shuffle = new Shuffle();
-        check = new Check();
+        check = new BlackJackRules();
         String str;
         while (playerNum > 0) {
             System.out.print("The information of player " + (all - playerNum + 1) + ". ");
@@ -108,7 +108,7 @@ public class BlackJackTable implements Table {
         Utils.printHandCard(p, 0);
         if (p.getTotal() == 2) {
             // if the player split his hand cards, he has two hand card sets
-            System.out.print(p.getName() + "'s second handcards:\t");
+            System.out.print(p.getName() + "'s handcards 2:\t");
             Utils.printHandCard(p, 1);
         }
     }
@@ -123,7 +123,7 @@ public class BlackJackTable implements Table {
         System.out.print(p.getName() + "'s handcards:\t");
         Utils.printHandCard(p, 0);
         if (p.getTotal() == 2) {
-            System.out.print(p.getName() + "'s second handcards:\t");
+            System.out.print(p.getName() + "'s handcards 2:\t");
             Utils.printHandCard(p, 1);
         }
         return 1;
