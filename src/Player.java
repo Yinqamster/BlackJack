@@ -28,6 +28,10 @@ public class Player extends Person{
 		return this.total;
 	}
 	
+	public boolean isOver() {
+		return total > which + 1;
+	}
+	
 	public void initWhichTotal() {
 		this.which = 0;
 		this.total = 1;
@@ -41,11 +45,11 @@ public class Player extends Person{
 		return this.wallet;
 	}
 	
-	public int takeAction(int index){
+	public int takeAction(){
 		//for the index hand of card, take the action(hit, stand, split, double up)
 		System.out.println("========================================");
 		if(handCard.size() == 2) {
-			System.out.println(super.getName() + ", please select action for your " + (index+1) + " hand cards: ");
+			System.out.println(super.getName() + ", please select action for your " + (which+1) + " hand cards: ");
 		}
 		else {
 			System.out.println(super.getName() + ", please select action for your hand cards: ");
@@ -99,18 +103,18 @@ public class Player extends Person{
 				case Config.DOUBLEACTION: {
 					int size = bet.size();
 					//this shouldn't happen!!!
-					if(!(index >= 0 && index < size)){
+					if(!(which >= 0 && which < size)){
 						System.out.println("wrong index1");
 						return -1;
 					}
 					
-					if(currentMoney < bet.get(index).getBet()) {
+					if(currentMoney < bet.get(which).getBet()) {
 						System.out.print(super.getName() + " cannot take this action, please choose again:");
 						break;
 					}
 					else {
-						int betNum = bet.get(index).getBet();
-						bet.get(index).setBet(2 * betNum);
+						int betNum = bet.get(which).getBet();
+						bet.get(which).setBet(2 * betNum);
 						wallet.setWallet(currentMoney - betNum);
 						return Config.DOUBLEACTION;
 					}
@@ -153,27 +157,27 @@ public class Player extends Person{
 		
 	}
 	
-	public void endGame(int result, int index) {
+	public void endGame(int result) {
 		//get the result of the index hand of card
 		switch(result) {
 			case Config.PLAYERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s " + (index+1) + " hand win!");
+					System.out.println(super.getName() + "'s " + (which+1) + " hand win!");
 				}
 				else {
 					System.out.println(super.getName() + " win!");
 				}
-				wallet.winMoney(2*bet.get(index).getBet());
+				wallet.winMoney(2*bet.get(which).getBet());
 				break;
 			}
 			case Config.DEAL: {
 				System.out.println("Deal!");
-				wallet.winMoney(bet.get(index).getBet());
+				wallet.winMoney(bet.get(which).getBet());
 				break;
 			}
 			case Config.DEALERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s " + (index+1) + " hand lose!");
+					System.out.println(super.getName() + "'s " + (which+1) + " hand lose!");
 				}
 				else {
 					System.out.println(super.getName() + " lose!");
