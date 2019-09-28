@@ -37,8 +37,10 @@ public class BlackJackTable implements Table {
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (flag) {
-            for (Player player : players)
+            for (Player player : players) {
                 player.initTotal();
+                player.initWhich();
+            }
             shuffle.giveNewCard(dealer);
             shuffle.newShuffle();
             for (Player player : players) {
@@ -52,13 +54,8 @@ public class BlackJackTable implements Table {
                 while (true) {
                     int action = player.takeAction();
                     if (action == Config.HITACTION) {
-                        shuffle.giveOneCard(player, player.getWhich());
-                        print(player);
-                        if (check.checkBust(player, player.getWhich())) {
-                            player.endGame(Config.BUST);
-                            if (player.isOver())
-                                break;
-                        }
+                        if (!hitAction(player))
+                            break;
                     }
                     else if (action == Config.SPLITACTION) {
                         print(player);
@@ -68,13 +65,8 @@ public class BlackJackTable implements Table {
                             break;
                     }
                     else if (action == Config.DOUBLEACTION) {
-                        shuffle.giveOneCard(player, player.getWhich());
-                        print(player);
-                        if (check.checkBust(player, player.getWhich())) {
-                            player.endGame(Config.BUST);
-                            if (player.isOver())
-                                break;
-                        }
+                        if (!hitAction(player))
+                            break;
                         if (standAction(player) == 1)
                             break;
                     }
@@ -89,6 +81,16 @@ public class BlackJackTable implements Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
+    }
+
+    private boolean hitAction(Player player) {
+        shuffle.giveOneCard(player, player.getWhich());
+        print(player);
+        if (check.checkBust(player, player.getWhich())) {
+            player.endGame(Config.BUST);
+            return !player.isOver();
+        }
+        return true;
     }
 
     public void printResult() {
