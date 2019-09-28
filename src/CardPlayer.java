@@ -54,8 +54,9 @@ public class CardPlayer extends Person{
 			for(Card card : cards) {
 				System.out.print("(" + card.getSuit() + ")" + card.getNumber() + " ");
 			}
+			System.out.println();
 		}
-		System.out.println();
+		
 	}
 	
 }
