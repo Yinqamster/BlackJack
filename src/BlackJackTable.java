@@ -38,6 +38,10 @@ public class BlackJackTable implements Table {
         else
             dealer = new BlackJackDealer();
         flag = true;
+        if (this.playerNum <= 0) {
+            System.out.println("See you");
+            flag = false;
+        }
     }
 
     public void playGame() {
@@ -88,7 +92,8 @@ public class BlackJackTable implements Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
-        printResult();
+        if (playerNum > 0)
+            printResult();
     }
 
     private boolean hitAction(BlackJackPlayer player) {

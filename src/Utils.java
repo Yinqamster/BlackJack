@@ -69,7 +69,14 @@ public class Utils {
 			System.out.print("Please input a correct number: ");
 			str = scanner.nextLine();
 		}
-		int num = Integer.parseInt(str);
+		int num = 0;
+		try {
+			num = Integer.parseInt(str);
+		}
+		catch (NumberFormatException e) {
+			System.out.println("Out of range, set to default 1.");
+			num = 1;
+		}
 		return num;
 	}
 	
