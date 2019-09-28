@@ -1,8 +1,11 @@
 import java.util.List;
 
-public class BlackJackRules extends Rules{
+public class BlackJackRules implements Rules{
 	public BlackJackRules() {
 		
+	}
+	public int checkWin() {
+		return 0;
 	}
 	
 	public boolean checkBust(CardPlayer P, int which) {
@@ -55,4 +58,6 @@ public class BlackJackRules extends Rules{
 			return Config.DEAL;
 		}
 	}
+
+	
 }
