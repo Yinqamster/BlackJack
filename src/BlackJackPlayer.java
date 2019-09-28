@@ -3,8 +3,8 @@ import java.util.List;
 
 public class BlackJackPlayer extends CardPlayer{
 
-	private int which;
-	private int total;
+	private int which = 0;
+	private int total = 1;
 	private List<Bet> bet = new ArrayList<Bet>();
 	private Wallet wallet = new Wallet();
 	
@@ -66,7 +66,7 @@ public class BlackJackPlayer extends CardPlayer{
 	public int takeAction(){
 		//for the index hand of card, take the action(hit, stand, split, double up)
 		System.out.println("========================================");
-		if(handCard.size() == 2) {
+		if(handCard.size() > 1) {
 			System.out.println(super.getName() + ", please select action for your " + (which+1) + " hand cards: ");
 		}
 		else {
@@ -122,7 +122,6 @@ public class BlackJackPlayer extends CardPlayer{
 					int size = bet.size();
 					//this shouldn't happen!!!
 					if(!(which >= 0 && which < size)){
-//						System.out.println("which: " + which);
 						System.out.println("wrong index1");
 						return -1;
 					}
@@ -137,6 +136,9 @@ public class BlackJackPlayer extends CardPlayer{
 						wallet.setWallet(currentMoney - betNum);
 						return Config.DOUBLEACTION;
 					}
+				}
+				default: {
+					break;
 				}
 			}
 		}
@@ -180,7 +182,7 @@ public class BlackJackPlayer extends CardPlayer{
 		//get the result of the index hand of card
 		switch(result) {
 			case Config.PLAYERWIN: {
-				if(handCard.size() == 2) {
+				if(handCard.size() > 1) {
 					System.out.println(super.getName() + "'s handcards " + (which+1) + ": Win!");
 				}
 				else {
@@ -190,7 +192,7 @@ public class BlackJackPlayer extends CardPlayer{
 				break;
 			}
 			case Config.DEAL: {
-				if(handCard.size() == 2) {
+				if(handCard.size() > 1) {
 					System.out.println(super.getName() + "'s handcards " + (which+1) + ": End in a tie!");
 				}
 				else {
@@ -200,7 +202,7 @@ public class BlackJackPlayer extends CardPlayer{
 				break;
 			}
 			case Config.DEALERWIN: {
-				if(handCard.size() == 2) {
+				if(handCard.size() > 1) {
 					System.out.println(super.getName() + "'s handcards " + (which+1) + ": Lose!");
 				}
 				else {
