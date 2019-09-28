@@ -3,8 +3,11 @@ import java.util.List;
 
 public class Player extends Person{
 
+	private int which;
+	private int total;
 	private List<Bet> bet = new ArrayList<Bet>();
 	private Wallet wallet = new Wallet();
+	
 	
 	public Player() {}
 	
@@ -15,6 +18,19 @@ public class Player extends Person{
 	public Player(String name, int money) {
 		super(name);
 		wallet.setWallet(money);
+	}
+	
+	public int getWhich() {
+		return this.which;
+	}
+	
+	public int getTotal() {
+		return this.total;
+	}
+	
+	public void initWhichTotal() {
+		this.which = 0;
+		this.total = 1;
 	}
 	
 	public List<Bet> getBet() {
@@ -53,8 +69,10 @@ public class Player extends Person{
 			switch (action) {
 				case Config.HITACTION:
 					return Config.HITACTION;
-				case Config.STANDACTION:
+				case Config.STANDACTION: {
+					which++;
 					return Config.STANDACTION;
+				}
 				case Config.SPLITACTION:{
 					if(bet.size() != 1 || currentMoney < bet.get(0).getBet()
 							|| handCard.size() != 1
@@ -74,6 +92,7 @@ public class Player extends Person{
 						handCardList1.getCards().remove(1);
 						handCard.add(handCardList2);
 						wallet.setWallet(currentMoney - bet2.getBet());
+						total++;
 						return Config.SPLITACTION;
 					}
 				}
@@ -162,6 +181,7 @@ public class Player extends Person{
 				break;
 			}
 			case Config.BUST: {
+				which++;
 				System.out.println("BUST!!!!");
 				break;
 			}
