@@ -10,4 +10,8 @@ public class Person {
 	public String getName() {
 		return this.name;
 	}
+	
+	public void printName(){
+		System.out.println(name);
+	}
 }

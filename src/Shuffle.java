@@ -44,7 +44,7 @@ public class Shuffle {
         p.giveCard(cards[a], which);
     }
 
-    public void keepGive(Dealer dealer) {
+    public void keepGive(BlackJackDealer dealer) {
         // keep give dealer cards if dealer's hand cards' value is less than 17
         while (max(dealer.getHandCard().get(0).getValue()) < 17)
             giveOneCard(dealer, 0);
