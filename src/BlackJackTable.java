@@ -55,7 +55,7 @@ public class BlackJackTable implements Table {
                         print(player);
                         if (check.checkBust(player, player.getWhich())) {
                             player.endGame(Config.BUST);
-                            if (!player.isOver())
+                            if (player.isOver())
                                 break;
                         }
                     }
@@ -74,7 +74,6 @@ public class BlackJackTable implements Table {
                             if (player.isOver())
                                 break;
                         }
-                        else
                         if (standAction(player) == 1)
                             break;
                     }
@@ -113,7 +112,7 @@ public class BlackJackTable implements Table {
 
     private int standAction(Player p) {
         // after the player stand, use this method to do the following work
-        if (p.isOver())
+        if (!p.isOver())
             return 0;
         shuffle.keepGive(dealer);
         System.out.print(dealer.getName() + "'s handcards:\t");
