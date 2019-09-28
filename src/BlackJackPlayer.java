@@ -181,30 +181,30 @@ public class BlackJackPlayer extends CardPlayer{
 		switch(result) {
 			case Config.PLAYERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s handcards " + (which+1) + " win!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + ": Win!");
 				}
 				else {
-					System.out.println(super.getName() + " win!");
+					System.out.println(super.getName() + ": Win!");
 				}
 				wallet.winMoney(2*bet.get(which).getBet());
 				break;
 			}
 			case Config.DEAL: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s handcards " + (which+1) + " end in a tie!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + ": End in a tie!");
 				}
 				else {
-					System.out.println("The game ends in a tie!");
+					System.out.println(super.getName() + ": End in a tie!");
 				}
 				wallet.winMoney(bet.get(which).getBet());
 				break;
 			}
 			case Config.DEALERWIN: {
 				if(handCard.size() == 2) {
-					System.out.println(super.getName() + "'s handcards " + (which+1) + " lose!");
+					System.out.println(super.getName() + "'s handcards " + (which+1) + ": Lose!");
 				}
 				else {
-					System.out.println(super.getName() + " lose!");
+					System.out.println(super.getName() + ": Lose!");
 				}
 				break;
 			}

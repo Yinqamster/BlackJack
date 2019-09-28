@@ -11,7 +11,7 @@ public class BlackJackDealer extends CardPlayer{
     
     public void printDealerHandCard() {
 		List<Card> card = handCard.get(0).getCards();
-		System.out.print(super.getName() + "'s handcards: " + card.get(0).getNumber() + "(" + card.get(0).getSuit() + ") ");
+		System.out.print(super.getName() + "'s handcards: " + "(" + card.get(0).getSuit() + ")" + card.get(0).getNumber() + " ");
 		System.out.println("*");
 	}
 }
