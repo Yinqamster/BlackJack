@@ -7,14 +7,16 @@ public class BlackJackTable implements Table {
     private List<BlackJackPlayer> players;
     private BlackJackDealer dealer;
     private boolean flag; // whether a new game
+    private int playerNum;
 
     public BlackJackTable(int playerNum) {
+        this.playerNum = playerNum;
         int all = playerNum;
     	System.out.println("Welcome to the BlackJack game.");
     	System.out.println("The objective of the game is to accumulate a hand of cards that equals 21.");
     	System.out.println("Or a hand that has a card value greater than your opponents without exceeding 21.");
     	players = new ArrayList<>();
-        shuffle = new Shuffle();
+        shuffle = new Shuffle((int)Math.ceil(playerNum / 2.0));
         check = new BlackJackRules();
         String str;
         while (playerNum > 0) {
@@ -82,6 +84,8 @@ public class BlackJackTable implements Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
+        for (Player player : players)
+            System.out.println(player.getName() + "'s final money is: " + player.getWallet().getMoney());
     }
 
     private boolean hitAction(BlackJackPlayer player) {
