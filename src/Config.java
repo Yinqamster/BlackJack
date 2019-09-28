@@ -1,6 +1,8 @@
 
 public class Config {
 
+	public static final int PLAYERNUM = 1;
+
 	public static final int MAXBET = 100;
 	public static final int MINBET = 10;
 	

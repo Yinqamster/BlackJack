@@ -1,0 +1,2 @@
+把which和total放到player类里，提供接口，修改原来的方法 ： 实现多人游戏
+table interface

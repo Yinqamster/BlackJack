@@ -19,10 +19,10 @@ Shuffle
     1, it's a machine control all cards and give card in random
     2, with the Shuffle class, the player and dealer can get card randomly, the Shuffle class controls all the cards
     3, for future, the Shuffle is already support more than 1 set of cards, just call Shuffle(int n) in ok
-Table
+BlackJackTable
     1, it's where player play the game
-    2, the Table is the controller of the game, it calls apis from some instances and gather needed
+    2, the BlackJackTable is the controller of the game, it calls apis from some instances and gather needed
     information and then send them to other apis from some instances to let the game goes smoothly
-    3, for future, the Table is already support multi-players game, but some modifications of the output are needed
+    3, for future, the BlackJackTable is already support multi-players game, but some modifications of the output are needed
 Utils
 Wallet

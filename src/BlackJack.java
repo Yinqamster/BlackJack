@@ -1,6 +1,6 @@
 public class BlackJack {
     public static void main(String[] args) {
-        Table t = new Table();
+        BlackJackTable t = new BlackJackTable(Config.PLAYERNUM);
         t.playGame();
     }
 }

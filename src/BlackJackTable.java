@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table {
+public class BlackJackTable {
     private Shuffle shuffle;
     private Check check;
     private List<Player> players;
@@ -10,7 +10,7 @@ public class Table {
     private int total; // how many hand cards the player has now
     private boolean flag; // whether a new game
 
-    public Table(int playerNum) {
+    public BlackJackTable(int playerNum) {
         int all = playerNum;
     	System.out.println("Welcome to the BlackJack game.");
     	System.out.println("The objective of the game is to accumulate a hand of cards that equals 21.");
@@ -41,12 +41,12 @@ public class Table {
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (flag) {
+            shuffle.giveNewCard(dealer);
             for (Player player : players) {
                 if(!player.makeBet())
                     break;
                 shuffle.newShuffle();
                 shuffle.giveNewCard(player);
-                shuffle.giveNewCard(dealer);
                 System.out.print(dealer.getName() + "'s handcards:\t");
                 Utils.printDealerHandCard(dealer);
                 System.out.print(player.getName() + "'s handcards:\t");
