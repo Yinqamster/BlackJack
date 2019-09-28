@@ -8,11 +8,13 @@ public class BlackJackTable implements Table {
     private BlackJackDealer dealer;
     private boolean flag; // whether a new game
 
-    public BlackJackTable(int playerNum) {
-        int all = playerNum;
+    public BlackJackTable() {
     	System.out.println("Welcome to the BlackJack game.");
     	System.out.println("The objective of the game is to accumulate a hand of cards that equals 21.");
     	System.out.println("Or a hand that has a card value greater than your opponents without exceeding 21.");
+        System.out.print("How many players in the game? ");
+        int playerNum = Utils.getNumberFromPlayer();
+        int all = playerNum;
     	players = new ArrayList<>();
         shuffle = new Shuffle((int)Math.ceil(playerNum / 2.0));
         check = new BlackJackRules();
