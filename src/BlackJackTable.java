@@ -9,6 +9,7 @@ public class BlackJackTable implements Table {
     private int playerNum;
     private int currentPlayer;
     private boolean computer;
+    private boolean need;
 
     public BlackJackTable() {
     	System.out.println("Welcome to the BlackJack game.");
@@ -41,6 +42,7 @@ public class BlackJackTable implements Table {
             System.out.println("See you");
         }
         computer = false;
+        need = false;
     }
 
     public void playGame() {
@@ -71,6 +73,7 @@ public class BlackJackTable implements Table {
                         print(player);
                     }
                     else if (action == Config.STANDACTION) {
+                        need = true;
                         if (standAction(player) == 1)
                             break;
                     }
@@ -78,10 +81,15 @@ public class BlackJackTable implements Table {
                         if (!hitAction(player))
                             break;
                         player.increaseWhich();
+                        need = true;
                         if (standAction(player) == 1)
                             break;
                     }
                 }
+            }
+            if (!computer && need) {
+                dealer.printHandCard();
+                need = false;
             }
             for (BlackJackPlayer player : players) {
                 player.initWhich();
@@ -100,10 +108,6 @@ public class BlackJackTable implements Table {
                 }
             }
             players = temp;
-            if (!computer) {
-                dealer.printHandCard();
-                computer = false;
-            }
         }
         if (playerNum > 0)
             printResult();
