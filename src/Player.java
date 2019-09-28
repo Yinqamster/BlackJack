@@ -29,6 +29,8 @@ public class Player extends Person{
 	}
 	
 	public boolean isOver() {
+//		System.out.println("total: " + total);
+//		System.out.println("which: " + which);
 		return total == which;
 	}
 
@@ -107,6 +109,7 @@ public class Player extends Person{
 					int size = bet.size();
 					//this shouldn't happen!!!
 					if(!(which >= 0 && which < size)){
+//						System.out.println("which: " + which);
 						System.out.println("wrong index1");
 						return -1;
 					}
@@ -119,6 +122,7 @@ public class Player extends Person{
 						int betNum = bet.get(which).getBet();
 						bet.get(which).setBet(2 * betNum);
 						wallet.setWallet(currentMoney - betNum);
+						which++;
 						return Config.DOUBLEACTION;
 					}
 				}
@@ -193,7 +197,6 @@ public class Player extends Person{
 				break;
 			}
 			case Config.BUST: {
-				which++;
 				System.out.println("BUST!!!!");
 				break;
 			}
@@ -203,6 +206,7 @@ public class Player extends Person{
 				break;
 			}
 		}
+		which++;
 		
 	}
 
