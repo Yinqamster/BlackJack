@@ -79,7 +79,7 @@ public class Table {
                 flag = false;
         }
         System.out.print("The player's final money in wallet is: ");
-        System.out.print(player.getWallet().getMoney());
+        System.out.println(player.getWallet().getMoney());
     }
 
     private void giveAndPrint() {

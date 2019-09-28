@@ -10,8 +10,8 @@ Each round of the Black Jack's goes like this:
 3, player keeps choosing from four actions (hit, stand, split, double up)
 4, the system gives our the result of this round, finish current round
 5, system asks the player whether wanna play a new game
-6, if yes go step 1
-7, if no, end the Black Jack game
+    if yes go step 1
+    if no, end the Black Jack game
 
 At the end of the system:
 print the final money the player has
