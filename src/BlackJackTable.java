@@ -7,6 +7,8 @@ public class BlackJackTable implements Table {
     private List<BlackJackPlayer> players;
     private BlackJackDealer dealer;
     private boolean flag; // whether a new game
+    private int playerNum;
+    private int currentPlayer;
 
     public BlackJackTable() {
     	System.out.println("Welcome to the BlackJack game.");
@@ -14,6 +16,8 @@ public class BlackJackTable implements Table {
     	System.out.println("Or a hand that has a card value greater than your opponents without exceeding 21.");
         System.out.print("How many players in the game? ");
         int playerNum = Utils.getNumberFromPlayer();
+        this.playerNum = playerNum;
+        currentPlayer = 0;
         int all = playerNum;
     	players = new ArrayList<>();
         shuffle = new Shuffle((int)Math.ceil(playerNum / 2.0));
@@ -43,9 +47,11 @@ public class BlackJackTable implements Table {
                 player.initTotal();
                 player.initWhich();
             }
+            currentPlayer = 0;
             shuffle.giveNewCard(dealer);
             shuffle.newShuffle();
             for (BlackJackPlayer player : players) {
+                currentPlayer += 1;
                 if(!player.makeBet())
                     break;
                 shuffle.giveNewCard(player);
@@ -113,7 +119,10 @@ public class BlackJackTable implements Table {
         if (!p.isOver())
             return 0;
         shuffle.keepGive(dealer);
-        dealer.printHandCard();
+        if (currentPlayer == playerNum)
+            dealer.printHandCard();
+        else
+            dealer.printDealerHandCard();
         p.printHandCard();
         return 1;
     }
