@@ -29,7 +29,7 @@ public class Utils {
 			System.out.print("Is the dealer the real man? Y/y for yes, other for no:");
 			str = scanner.nextLine();
 		} while (str.length() == 0);
-		return (str.charAt(0) == 'y' || str.charAt(0) == 'Y');
+		return (str.length() == 1 && (str.charAt(0) == 'y' || str.charAt(0) == 'Y'));
 	}
 
 	public static int getMoney() {
@@ -60,7 +60,7 @@ public class Utils {
 			System.out.print("New game? Y/y for yes, other for no: ");
 			str = scanner.nextLine();
 		} while (str.length() == 0);
-		return str.charAt(0);
+		return str.length() == 1 ? str.charAt(0) : 'n';
 	}
 	
 	public static int getNumberFromPlayer(){
@@ -69,7 +69,14 @@ public class Utils {
 			System.out.print("Please input a correct number: ");
 			str = scanner.nextLine();
 		}
-		int num = Integer.parseInt(str);
+		int num = 0;
+		try {
+			num = Integer.parseInt(str);
+		}
+		catch (NumberFormatException e) {
+			System.out.println("Out of range, set to default 1.");
+			num = 1;
+		}
 		return num;
 	}
 	
