@@ -1,15 +1,17 @@
-###Group Members:
+BlackJack
+==========
+### Group Members:
 	Name: Yuang Liu     BUID:U99473611
 	Name: Qi Yin        BUID:U31787103
 	Name: Jun Xiao      BUID:U85900288
 	
-###How to run:
+### How to run:
 The entrance of the program is BlackJack.java. You can run this program by
 
 	javac BlackJack.java
 	java BlackJack
 
-###Run Example:
+### Run Example:
 Welcome to the BlackJack game.<br>
 The objective of the game is to accumulate a hand of cards that equals 21.<br>
 Or a hand that has a card value greater than your opponents without exceeding 21.<br>
