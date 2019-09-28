@@ -28,6 +28,10 @@ public class Player extends Person{
 		return this.total;
 	}
 	
+	public void increaseWhich() {
+		this.which++;
+	}
+	
 	public boolean isOver() {
 //		System.out.println("total: " + total);
 //		System.out.println("which: " + which);
@@ -122,7 +126,6 @@ public class Player extends Person{
 						int betNum = bet.get(which).getBet();
 						bet.get(which).setBet(2 * betNum);
 						wallet.setWallet(currentMoney - betNum);
-						which++;
 						return Config.DOUBLEACTION;
 					}
 				}
