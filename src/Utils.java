@@ -57,7 +57,7 @@ public class Utils {
 	public static char nextGame() {
 		String str;
 		do {
-			System.out.print("New game? Y/y for yes, other for no: ");
+			System.out.print(" do you want to a new game? Y/y for yes, other for no: ");
 			str = scanner.nextLine();
 		} while (str.length() == 0);
 		return str.length() == 1 ? str.charAt(0) : 'n';

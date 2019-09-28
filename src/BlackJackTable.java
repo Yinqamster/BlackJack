@@ -6,7 +6,6 @@ public class BlackJackTable implements Table {
     private BlackJackRules check;
     private List<BlackJackPlayer> players;
     private BlackJackDealer dealer;
-    private boolean flag; // whether a new game
     private int playerNum;
     private int currentPlayer;
 
@@ -37,16 +36,14 @@ public class BlackJackTable implements Table {
         }
         else
             dealer = new BlackJackDealer();
-        flag = true;
         if (this.playerNum <= 0) {
             System.out.println("See you");
-            flag = false;
         }
     }
 
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
-        while (flag) {
+        while (players.size() != 0) {
             for (BlackJackPlayer player : players) {
                 player.initTotal();
                 player.initWhich();
@@ -88,9 +85,14 @@ public class BlackJackTable implements Table {
                 for (int i = 0; i < player.getHandCard().size(); i++)
                     player.endGame(check.checkWin(player, dealer, i));
             }
-            char c = Utils.nextGame();
-            if (c != 'y' && c != 'Y')
-                flag = false;
+            List<BlackJackPlayer> temp = new ArrayList<>();
+            for (BlackJackPlayer player : players) {
+                System.out.print(player.getName());
+                char c = Utils.nextGame();
+                if (c == 'y' || c == 'Y')
+                    temp.add(player);
+            }
+            players = temp;
         }
         if (playerNum > 0)
             printResult();
@@ -128,7 +130,12 @@ public class BlackJackTable implements Table {
             dealer.printHandCard();
         else
             dealer.printDealerHandCard();
-        p.printHandCard();
+        if (currentPlayer == playerNum) {
+            for (BlackJackPlayer player : players)
+                player.printHandCard();
+        }
+        else
+            p.printHandCard();
         return 1;
     }
 }
