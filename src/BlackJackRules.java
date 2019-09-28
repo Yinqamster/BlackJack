@@ -5,7 +5,7 @@ public class BlackJackRules extends Rules{
 		
 	}
 	
-	public boolean checkBust(Person P, int which) {
+	public boolean checkBust(CardPlayer P, int which) {
         // check if the hand cards of each person is greater than 21 or not 
 		List<HandCard> hc = P.getHandCard();
 		int[] v = hc.get(which).getValue();
@@ -16,7 +16,7 @@ public class BlackJackRules extends Rules{
 		return true;
 	}
 	
-	private int checkTotal(Person P, int which) {
+	private int checkTotal(CardPlayer P, int which) {
 		// calculate the total value of a set of hand cards
 		List<HandCard> hc = P.getHandCard();
 		int[] v = hc.get(which).getValue();
@@ -28,7 +28,7 @@ public class BlackJackRules extends Rules{
 		return max == 0 ? 22 : max;
 	}
 	
-	public int checkWin(Player P, Person D, int which) {
+	public int checkWin(BlackJackPlayer P, CardPlayer D, int which) {
 		// check who wins
 		if (!checkBust(P, which) && !checkBust(D, 0)) {
 			if (checkTotal(P, which)>checkTotal(D, 0)) {

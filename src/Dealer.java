@@ -1,5 +1,5 @@
 
-public class Dealer extends Person{
+public class Dealer extends CardPlayer{
     public Dealer(String name) {
         super(name);
     }

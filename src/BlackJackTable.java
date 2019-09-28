@@ -4,7 +4,7 @@ import java.util.List;
 public class BlackJackTable implements Table {
     private Shuffle shuffle;
     private BlackJackRules check;
-    private List<Player> players;
+    private List<BlackJackPlayer> players;
     private Dealer dealer;
     private boolean flag; // whether a new game
 
@@ -21,7 +21,7 @@ public class BlackJackTable implements Table {
             System.out.print("The information of player " + (all - playerNum + 1) + ". ");
             str = Utils.getName("player");
             int money = Utils.getMoney();
-            players.add(new Player(str, money));
+            players.add(new BlackJackPlayer(str, money));
             playerNum--;
         }
         boolean isMan = Utils.realMan(); //ask whether the dealer is a real man or not
@@ -37,13 +37,13 @@ public class BlackJackTable implements Table {
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (flag) {
-            for (Player player : players) {
+            for (BlackJackPlayer player : players) {
                 player.initTotal();
                 player.initWhich();
             }
             shuffle.giveNewCard(dealer);
             shuffle.newShuffle();
-            for (Player player : players) {
+            for (BlackJackPlayer player : players) {
                 if(!player.makeBet())
                     break;
                 shuffle.giveNewCard(player);
@@ -73,7 +73,7 @@ public class BlackJackTable implements Table {
                     }
                 }
             }
-            for (Player player : players) {
+            for (BlackJackPlayer player : players) {
                 player.initWhich();
                 for (int i = 0; i < player.getHandCard().size(); i++)
                     player.endGame(check.checkWin(player, dealer, i));
@@ -84,7 +84,7 @@ public class BlackJackTable implements Table {
         }
     }
 
-    private boolean hitAction(Player player) {
+    private boolean hitAction(BlackJackPlayer player) {
         shuffle.giveOneCard(player, player.getWhich());
         print(player);
         if (check.checkBust(player, player.getWhich())) {
@@ -95,13 +95,13 @@ public class BlackJackTable implements Table {
     }
 
     public void printResult() {
-        for (Player player : players) {
+        for (BlackJackPlayer player : players) {
             System.out.print(player.getName() + "'s final money of in wallet is: ");
             System.out.println(player.getWallet().getMoney());
         }
     }
 
-    private void print(Player p) {
+    private void print(BlackJackPlayer p) {
         //give one card to the player and then print the hand cards
         System.out.print(dealer.getName() + "'s handcards:\t");
         Utils.printDealerHandCard(dealer);
@@ -114,7 +114,7 @@ public class BlackJackTable implements Table {
         }
     }
 
-    private int standAction(Player p) {
+    private int standAction(BlackJackPlayer p) {
         // after the player stand, use this method to do the following work
         if (!p.isOver())
             return 0;

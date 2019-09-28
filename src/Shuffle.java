@@ -27,14 +27,14 @@ public class Shuffle {
         }
     }
 
-    public void giveNewCard(Person p) {
+    public void giveNewCard(CardPlayer p) {
         // at the start of the game, give the dealer and player two cards
         p.deleteHandCard();
         giveOneCard(p, 0);
         giveOneCard(p, 0);
     }
 
-    public void giveOneCard(Person p, int which) {
+    public void giveOneCard(CardPlayer p, int which) {
         // give one card to p
         int a = (int)(Math.random() * (Config.CARDNUM));
         while (mask[a] == 1) {

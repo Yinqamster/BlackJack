@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends Person{
+public class BlackJackPlayer extends CardPlayer{
 
 	private int which;
 	private int total;
@@ -9,13 +9,13 @@ public class Player extends Person{
 	private Wallet wallet = new Wallet();
 	
 	
-	public Player() {}
+	public BlackJackPlayer() {}
 	
-	public Player(String name) {
+	public BlackJackPlayer(String name) {
 		super(name);
 	}
 	
-	public Player(String name, int money) {
+	public BlackJackPlayer(String name, int money) {
 		super(name);
 		wallet.setWallet(money);
 	}

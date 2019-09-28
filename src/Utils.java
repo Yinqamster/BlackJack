@@ -73,7 +73,7 @@ public class Utils {
 		return num;
 	}
 	
-	public static void printHandCard(Person p, int index) {
+	public static void printHandCard(CardPlayer p, int index) {
 		List<HandCard> handCardList = p.getHandCard();
 		List<Card> handCard = handCardList.get(index).getCards();
 		for(int i = 0; i < handCard.size(); i++) {
@@ -82,22 +82,22 @@ public class Utils {
 		System.out.println();
 	}
 
-	public static void printDealerHandCard(Person d) {
+	public static void printDealerHandCard(CardPlayer d) {
 		List<HandCard> handCardList = d.getHandCard();
 		List<Card> handCard = handCardList.get(0).getCards();
 		System.out.print(handCard.get(0).getNumber() + " ");
 		System.out.println("*");
 	}
 	
-	public static void printBet(Player p, int index) {
+	public static void printBet(BlackJackPlayer p, int index) {
 		System.out.println(p.getBet().get(index).getBet());
 	}
 	
-	public static void printWallet(Player p) {
+	public static void printWallet(BlackJackPlayer p) {
 		System.out.println(p.getWallet().getMoney());
 	}
 	
-	public static void printName(Person p){
+	public static void printName(CardPlayer p){
 		System.out.println(p.getName());
 	}
 }
