@@ -40,10 +40,10 @@ public class BlackJackTable implements Table {
             for (Player player : players)
                 player.initTotal();
             shuffle.giveNewCard(dealer);
+            shuffle.newShuffle();
             for (Player player : players) {
                 if(!player.makeBet())
                     break;
-                shuffle.newShuffle();
                 shuffle.giveNewCard(player);
                 System.out.print(dealer.getName() + "'s handcards:\t");
                 Utils.printDealerHandCard(dealer);
@@ -51,20 +51,24 @@ public class BlackJackTable implements Table {
                 Utils.printHandCard(player, 0);
                 while (true) {
                     int action = player.takeAction();
-                    if (action == Config.HITACTION || action == Config.SPLITACTION) {
-                        giveAndPrint(player);
+                    if (action == Config.HITACTION) {
+                        print(player);
                         if (check.checkBust(player, player.getWhich())) {
                             player.endGame(Config.BUST);
                             if (!player.isOver())
                                 break;
                         }
                     }
+                    else if (action == Config.SPLITACTION) {
+                        print(player);
+                    }
                     else if (action == Config.STANDACTION) {
                         if (standAction(player) == 1)
                             break;
                     }
                     else if (action == Config.DOUBLEACTION) {
-                        giveAndPrint(player);
+                        shuffle.giveOneCard(player, player.getWhich());
+                        print(player);
                         if (check.checkBust(player, player.getWhich())) {
                             player.endGame(Config.BUST);
                             if (!player.isOver())
@@ -94,9 +98,8 @@ public class BlackJackTable implements Table {
         }
     }
 
-    private void giveAndPrint(Player p) {
+    private void print(Player p) {
         //give one card to the player and then print the hand cards
-        shuffle.giveOneCard(p, p.getWhich());
         System.out.print(dealer.getName() + "'s handcards:\t");
         Utils.printDealerHandCard(dealer);
         System.out.print(p.getName() + "'s handcards:\t");
