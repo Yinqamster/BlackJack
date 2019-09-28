@@ -52,7 +52,7 @@ public class CardPlayer extends Person{
 			}
 			
 			for(Card card : cards) {
-				System.out.print(card.getNumber() + "(" + card.getSuit() + ") ");
+				System.out.print("(" + card.getSuit() + ")" + card.getNumber() + " ");
 			}
 		}
 		System.out.println();
