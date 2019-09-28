@@ -67,7 +67,7 @@ public class BlackJackTable implements Table {
                         giveAndPrint(player);
                         if (check.checkBust(player, player.getWhich())) {
                             player.endGame(Config.BUST);
-                            if (!player.isOver())
+                            if (player.isOver())
                                 break;
                         }
                         else
