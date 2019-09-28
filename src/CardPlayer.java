@@ -42,8 +42,15 @@ public class CardPlayer extends Person{
 	}
 	
 	public void printHandCard() {
-		for(HandCard hc : handCard) {
-			List<Card> cards = hc.getCards();
+		for(int i = 0; i < handCard.size(); i++) {
+			List<Card> cards = handCard.get(i).getCards();
+			if(handCard.size() == 1) {
+				System.out.print(super.getName() + "'s handcards: ");
+			}
+			else {
+				System.out.print(super.getName() + "'s handcards " + (i+1) + ": ");
+			}
+			
 			for(Card card : cards) {
 				System.out.print(card.getNumber() + "(" + card.getSuit() + ") ");
 			}
