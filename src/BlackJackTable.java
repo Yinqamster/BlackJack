@@ -84,7 +84,7 @@ public class BlackJackTable implements Table {
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
-        for (Player player : players)
+        for (BlackJackPlayer player : players)
             System.out.println(player.getName() + "'s final money is: " + player.getWallet().getMoney());
     }
 
