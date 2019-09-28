@@ -91,6 +91,10 @@ public class BlackJackTable implements Table {
                 char c = Utils.nextGame();
                 if (c == 'y' || c == 'Y')
                     temp.add(player);
+                else {
+                    System.out.print(player.getName() + "'s final money of in wallet is: ");
+                    System.out.println(player.getWallet().getMoney());
+                }
             }
             players = temp;
         }
