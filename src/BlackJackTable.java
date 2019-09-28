@@ -93,7 +93,7 @@ public class BlackJackTable implements Table {
                 if (c == 'y' || c == 'Y')
                     temp.add(player);
                 else {
-                    System.out.print(player.getName() + "'s final money of in wallet is: ");
+                    System.out.print(player.getName() + "'s balance in wallet is: ");
                     System.out.println(player.getWallet().getMoney());
                 }
             }
@@ -115,7 +115,7 @@ public class BlackJackTable implements Table {
 
     public void printResult() {
         for (BlackJackPlayer player : players) {
-            System.out.print(player.getName() + "'s final money of in wallet is: ");
+            System.out.print(player.getName() + "'s balance in wallet is: ");
             System.out.println(player.getWallet().getMoney());
         }
     }

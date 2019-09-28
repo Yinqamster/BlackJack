@@ -3,16 +3,6 @@ import java.util.Scanner;
 
 public class Utils {
 	private static Scanner scanner = new Scanner(System.in);
-
-	public static int numOfPlayer() {
-		System.out.println("Please input the number of players: ");
-		int number = getNumberFromPlayer();
-		while(number != 1 && number != 2) {
-			System.out.println("Only one or two player(s) are allowed, please input again: ");
-			number = getNumberFromPlayer();
-		}
-		return number;
-	}
 	
 	public static String getName(String name) {
 		String str;
