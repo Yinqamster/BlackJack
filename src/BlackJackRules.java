@@ -1,7 +1,7 @@
 import java.util.List;
 
-public class Check {
-	public Check() {
+public class BlackJackRules extends Rules{
+	public BlackJackRules() {
 		
 	}
 	
