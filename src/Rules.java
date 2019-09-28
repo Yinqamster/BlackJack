@@ -1,9 +1,4 @@
 
-public class Rules {
-	public Rules() {
-		
-	}
-	public int checkWin() {
-		return 0;
-	}
+public interface Rules {
+	public int checkWin();
 }
