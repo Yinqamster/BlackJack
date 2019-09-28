@@ -22,4 +22,8 @@ public class Wallet {
 	public void loseMoney(int num) {
 		this.money = this.money - num;
 	}
+	
+	public void printMoney() {
+		System.out.println(this.money);
+	}
 }

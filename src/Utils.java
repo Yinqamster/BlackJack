@@ -77,7 +77,7 @@ public class Utils {
 		List<HandCard> handCardList = p.getHandCard();
 		List<Card> handCard = handCardList.get(index).getCards();
 		for(int i = 0; i < handCard.size(); i++) {
-			System.out.print(handCard.get(i).getNumber() + " ");
+			System.out.print(handCard.get(i).getNumber() + "(" + handCard.get(i).getSuit() + ") ");
 		}
 		System.out.println();
 	}
@@ -85,7 +85,7 @@ public class Utils {
 	public static void printDealerHandCard(Person d) {
 		List<HandCard> handCardList = d.getHandCard();
 		List<Card> handCard = handCardList.get(0).getCards();
-		System.out.print(handCard.get(0).getNumber() + " ");
+		System.out.print(handCard.get(0).getNumber() + "(" + handCard.get(0).getSuit() + ") ");
 		System.out.println("*");
 	}
 	
