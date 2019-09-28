@@ -8,6 +8,7 @@ public class BlackJackTable implements Table {
     private BlackJackDealer dealer;
     private int playerNum;
     private int currentPlayer;
+    private boolean computer;
 
     public BlackJackTable() {
     	System.out.println("Welcome to the BlackJack game.");
@@ -39,6 +40,7 @@ public class BlackJackTable implements Table {
         if (this.playerNum <= 0) {
             System.out.println("See you");
         }
+        computer = false;
     }
 
     public void playGame() {
@@ -98,6 +100,10 @@ public class BlackJackTable implements Table {
                 }
             }
             players = temp;
+            if (!computer) {
+                dealer.printHandCard();
+                computer = false;
+            }
         }
         if (playerNum > 0)
             printResult();
@@ -131,8 +137,10 @@ public class BlackJackTable implements Table {
         if (!p.isOver())
             return 0;
         shuffle.keepGive(dealer);
-        if (currentPlayer == playerNum)
+        if (currentPlayer == playerNum) {
+            computer = true;
             dealer.printHandCard();
+        }
         else
             dealer.printDealerHandCard();
         if (currentPlayer == playerNum) {
