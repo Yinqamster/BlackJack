@@ -67,6 +67,7 @@ public class BlackJackTable implements Table {
                     else if (action == Config.DOUBLEACTION) {
                         if (!hitAction(player))
                             break;
+                        player.increaseWhich();
                         if (standAction(player) == 1)
                             break;
                     }
