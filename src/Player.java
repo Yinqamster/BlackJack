@@ -29,7 +29,7 @@ public class Player extends Person{
 	}
 	
 	public boolean isOver() {
-		return total == which + 1;
+		return total == which;
 	}
 
 	public void initWhich() {
