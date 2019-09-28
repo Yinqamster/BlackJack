@@ -106,7 +106,7 @@ public class BlackJackTable implements Table {
         Utils.printHandCard(p, 0);
         if (p.getTotal() == 2) {
             // if the player split his hand cards, he has two hand card sets
-            System.out.print(p.getName() + "'s second handcards:\t");
+            System.out.print(p.getName() + "'s handcards 2:\t");
             Utils.printHandCard(p, 1);
         }
     }
@@ -121,7 +121,7 @@ public class BlackJackTable implements Table {
         System.out.print(p.getName() + "'s handcards:\t");
         Utils.printHandCard(p, 0);
         if (p.getTotal() == 2) {
-            System.out.print(p.getName() + "'s second handcards:\t");
+            System.out.print(p.getName() + "'s handcards 2:\t");
             Utils.printHandCard(p, 1);
         }
         return 1;
