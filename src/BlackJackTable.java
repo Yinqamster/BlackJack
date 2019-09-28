@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlackJackTable {
+public class BlackJackTable implements Table {
     private Shuffle shuffle;
     private Check check;
     private List<Player> players;
     private Dealer dealer;
-    private int which; // which hand cards are the player manipulate now
-    private int total; // how many hand cards the player has now
     private boolean flag; // whether a new game
 
     public BlackJackTable(int playerNum) {
@@ -33,14 +31,14 @@ public class BlackJackTable {
         }
         else
             dealer = new Dealer();
-        which = 0;
-        total = 1;
         flag = true;
     }
 
     public void playGame() {
         // the body of the game, ask the player for its choice and ask the checker check whether the player bust or not for each round
         while (flag) {
+            for (Player player : players)
+                player.initTotal();
             shuffle.giveNewCard(dealer);
             for (Player player : players) {
                 if(!player.makeBet())
@@ -52,16 +50,12 @@ public class BlackJackTable {
                 System.out.print(player.getName() + "'s handcards:\t");
                 Utils.printHandCard(player, 0);
                 while (true) {
-                    int action = player.takeAction(which);
+                    int action = player.takeAction();
                     if (action == Config.HITACTION || action == Config.SPLITACTION) {
-                        if (action == Config.SPLITACTION)
-                            total++;
                         giveAndPrint(player);
-                        if (check.checkBust(player, which)) {
-                            player.endGame(Config.BUST, which);
-                            if (total > which + 1)
-                                which++;
-                            else
+                        if (check.checkBust(player, player.getWhich())) {
+                            player.endGame(Config.BUST);
+                            if (!player.isOver())
                                 break;
                         }
                     }
@@ -71,11 +65,9 @@ public class BlackJackTable {
                     }
                     else if (action == Config.DOUBLEACTION) {
                         giveAndPrint(player);
-                        if (check.checkBust(player, which)) {
-                            player.endGame(Config.BUST, which);
-                            if (total > which + 1)
-                                which++;
-                            else
+                        if (check.checkBust(player, player.getWhich())) {
+                            player.endGame(Config.BUST);
+                            if (!player.isOver())
                                 break;
                         }
                         else
@@ -84,13 +76,18 @@ public class BlackJackTable {
                     }
                 }
             }
-            for (Player player : players)
+            for (Player player : players) {
+                player.initWhich();
                 for (int i = 0; i < player.getHandCard().size(); i++)
-                    player.endGame(check.checkWin(player, dealer, i), i);
+                    player.endGame(check.checkWin(player, dealer, i));
+            }
             char c = Utils.nextGame();
             if (c != 'y' && c != 'Y')
                 flag = false;
         }
+    }
+
+    public void printResult() {
         for (Player player : players) {
             System.out.print(player.getName() + "'s final money of in wallet is: ");
             System.out.println(player.getWallet().getMoney());
@@ -99,12 +96,12 @@ public class BlackJackTable {
 
     private void giveAndPrint(Player p) {
         //give one card to the player and then print the hand cards
-        shuffle.giveOneCard(p, which);
+        shuffle.giveOneCard(p, p.getWhich());
         System.out.print(dealer.getName() + "'s handcards:\t");
         Utils.printDealerHandCard(dealer);
         System.out.print(p.getName() + "'s handcards:\t");
         Utils.printHandCard(p, 0);
-        if (total == 2) {
+        if (p.getTotal() == 2) {
             // if the player split his hand cards, he has two hand card sets
             System.out.print(p.getName() + "'s second handcards:\t");
             Utils.printHandCard(p, 1);
@@ -113,16 +110,14 @@ public class BlackJackTable {
 
     private int standAction(Player p) {
         // after the player stand, use this method to do the following work
-        if (total > which + 1) {
-            which++;
+        if (p.isOver())
             return 0;
-        }
         shuffle.keepGive(dealer);
         System.out.print(dealer.getName() + "'s handcards:\t");
         Utils.printHandCard(dealer, 0);
         System.out.print(p.getName() + "'s handcards:\t");
         Utils.printHandCard(p, 0);
-        if (total == 2) {
+        if (p.getTotal() == 2) {
             System.out.print(p.getName() + "'s second handcards:\t");
             Utils.printHandCard(p, 1);
         }

@@ -31,9 +31,12 @@ public class Player extends Person{
 	public boolean isOver() {
 		return total > which + 1;
 	}
-	
-	public void initWhichTotal() {
+
+	public void initWhich() {
 		this.which = 0;
+	}
+	
+	public void initTotal() {
 		this.total = 1;
 	}
 	
