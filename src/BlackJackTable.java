@@ -52,6 +52,7 @@ public class BlackJackTable implements Table {
                 while (true) {
                     int action = player.takeAction();
                     if (action == Config.HITACTION) {
+                        shuffle.giveOneCard(player, player.getWhich());
                         print(player);
                         if (check.checkBust(player, player.getWhich())) {
                             player.endGame(Config.BUST);
