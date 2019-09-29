@@ -87,10 +87,9 @@ public class BlackJackTable implements Table {
                     }
                 }
             }
-            if (!computer && need) {
-                dealer.printHandCard();
-                need = false;
-            }
+            dealer.printHandCard();
+            for (BlackJackPlayer player : players)
+                player.printHandCard();
             for (BlackJackPlayer player : players) {
                 player.initWhich();
                 for (int i = 0; i < player.getHandCard().size(); i++)
@@ -141,18 +140,6 @@ public class BlackJackTable implements Table {
         if (!p.isOver())
             return 0;
         shuffle.keepGive(dealer);
-        if (currentPlayer == playerNum) {
-            computer = true;
-            dealer.printHandCard();
-        }
-        else
-            dealer.printDealerHandCard();
-        if (currentPlayer == playerNum) {
-            for (BlackJackPlayer player : players)
-                player.printHandCard();
-        }
-        else
-            p.printHandCard();
         return 1;
     }
 }
