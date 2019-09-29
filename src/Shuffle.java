@@ -46,16 +46,27 @@ public class Shuffle {
 
     public void keepGive(BlackJackDealer dealer) {
         // keep give dealer cards if dealer's hand cards' value is less than 17
-        while (max(dealer.getHandCard().get(0).getValue()) < 17)
+        while (max(dealer.getHandCard().get(0)) < 17)
             giveOneCard(dealer, 0);
     }
 
-    private int max(int[] a) {
+    private int max(HandCard a) {
         // get the max value of the possible value of the hand cards
-        int max = 0;
-        for (int v : a)
-            if (max < v)
-                max = v;
-        return max;
+        int ace = 0;
+        int sub_total = 0;
+        for (Card c : a.getCards()) {
+            if (c.getValue() == 1)
+                ace += 1;
+            else
+                sub_total += Math.min(c.getValue(), 10);
+        }
+        while (ace > 0) {
+            if (sub_total + 11 > 21)
+                sub_total ++;
+            else
+                sub_total += 11;
+            ace--;
+        }
+        return sub_total;
     }
 }
