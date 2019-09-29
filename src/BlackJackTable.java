@@ -51,9 +51,15 @@ public class BlackJackTable implements Table {
             }
             shuffle.giveNewCard(dealer);
             shuffle.newShuffle();
+            List<BlackJackPlayer> delete = new ArrayList<>();
             for (BlackJackPlayer player : players) {
-                if(!player.makeBet())
+                if(!player.makeBet()) {
+                    if (!delete.contains(player))
+                        delete.add(player);
+                    if (delete.size() == players.size())
+                        break;
                     continue;
+                }
                 shuffle.giveNewCard(player);
                 dealer.printDealerHandCard();
                 player.printHandCard();
@@ -79,28 +85,32 @@ public class BlackJackTable implements Table {
                     }
                 }
             }
-            if (!computer)
-                shuffle.keepGive(dealer);
-            dealer.printHandCard();
-            for (BlackJackPlayer player : players)
-                player.printHandCard();
-            for (BlackJackPlayer player : players) {
-                player.initWhich();
-                for (int i = 0; i < player.getHandCard().size(); i++)
-                    player.endGame(check.checkWin(player, dealer, i));
-            }
-            List<BlackJackPlayer> temp = new ArrayList<>();
-            for (BlackJackPlayer player : players) {
-                System.out.print(player.getName());
-                char c = Utils.nextGame();
-                if (c == 'y' || c == 'Y')
-                    temp.add(player);
-                else {
-                    System.out.print(player.getName() + "'s balance in wallet is: ");
-                    System.out.println(player.getWallet().getMoney());
+            players.removeAll(delete);
+            delete.clear();
+            if (players.size() != 0) {
+                if (!computer)
+                    shuffle.keepGive(dealer);
+                dealer.printHandCard();
+                for (BlackJackPlayer player : players)
+                    player.printHandCard();
+                for (BlackJackPlayer player : players) {
+                    player.initWhich();
+                    for (int i = 0; i < player.getHandCard().size(); i++)
+                        player.endGame(check.checkWin(player, dealer, i));
                 }
+                List<BlackJackPlayer> temp = new ArrayList<>();
+                for (BlackJackPlayer player : players) {
+                    System.out.print(player.getName());
+                    char c = Utils.nextGame();
+                    if (c == 'y' || c == 'Y')
+                        temp.add(player);
+                    else {
+                        System.out.print(player.getName() + "'s balance in wallet is: ");
+                        System.out.println(player.getWallet().getMoney());
+                    }
+                }
+                players = temp;
             }
-            players = temp;
         }
         if (playerNum > 0)
             printResult();
