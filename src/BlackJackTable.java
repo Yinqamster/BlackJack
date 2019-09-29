@@ -53,7 +53,7 @@ public class BlackJackTable implements Table {
             shuffle.newShuffle();
             for (BlackJackPlayer player : players) {
                 if(!player.makeBet())
-                    break;
+                    continue;
                 shuffle.giveNewCard(player);
                 dealer.printDealerHandCard();
                 player.printHandCard();
